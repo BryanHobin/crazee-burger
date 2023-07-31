@@ -4,6 +4,7 @@ import "./LoginForm.css";
 import styled from "styled-components";
 import { theme } from "../theme";
 import { BsPersonCircle } from "react-icons/bs";
+import { IoChevronForward } from "react-icons/io5";
 
 export default function LoginForm() {
   //state
@@ -34,14 +35,16 @@ export default function LoginForm() {
             required
           />
         </div>
-        <button>Accéder à mon espace</button>
+        <button className="button-with-icon">
+          <span>Accéder à mon espace</span>
+          <IoChevronForward className="icon" />
+        </button>
       </LoginFormStyled>
     </>
   );
 }
 
 const LoginFormStyled = styled.form`
-  background: green;
   text-align: center;
   font-family: "Amatic SC", cursive;
   max-width: 500px;
@@ -88,6 +91,7 @@ const LoginFormStyled = styled.form`
       border: none;
       font-size: 15px;
       color: ${theme.colors.greyDark};
+      width: 100%;
     }
 
     &::placeholder{
@@ -97,5 +101,48 @@ const LoginFormStyled = styled.form`
 
   }
 
+  .button-with-icon{
+    background-color: ${theme.colors.primary};
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    white-space: nowrap;
+    text-decoration: none;
+    line-height: 1;
 
+    padding:18px 24px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 800;
+    color: white;
+    border: 1px solid ${theme.colors.primary} ;
+    transition: all 200ms ease-in-out;
+
+    &:hover:not(:disabled){
+      background-color: #fff;
+      color: ${theme.colors.primary};
+      border: 1px solid ${theme.colors.primary} ;
+    }
+
+    &:active{
+      color: white;
+      background-color: ${theme.colors.primary};
+      border: 1px solid ${theme.colors.primary} ;
+    }
+
+    &:disabled{
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .icon{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      margin-left: 10px;
+    }
+  }
 `;

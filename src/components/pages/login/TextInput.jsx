@@ -1,20 +1,21 @@
 import { styled } from "styled-components";
 import { theme } from "../theme";
 
-export default function Input({ value, onChange, Icon, ...extraProps }) {
- //state
+export default function TextInput({ value, onChange, Icon, ...extraProps }) {
+  //state
 
- //render
- return (
-  <InputStyled>
-   {Icon && Icon}
-   <input
-    value={value}
-    onChange={onChange}
-    {...extraProps}
-   />
-  </InputStyled>
- )
+  //render
+  return (
+    <InputStyled>
+      {Icon && Icon}
+      <input
+        value={value}
+        onChange={onChange}
+        type="text"
+        {...extraProps}
+      />
+    </InputStyled>
+  )
 }
 const InputStyled = styled.div`
     background-color: #fff;

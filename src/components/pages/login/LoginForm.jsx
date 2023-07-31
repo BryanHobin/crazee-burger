@@ -36,12 +36,5 @@ export default function LoginForm() {
 }
 
 const LoginFormStyled = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  h1 {
-    font-size: 50px;
-  }
+  background: green;
 `;

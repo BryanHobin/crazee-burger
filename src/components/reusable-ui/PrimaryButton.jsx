@@ -1,13 +1,13 @@
 import { styled } from "styled-components";
-import { theme } from "../pages/theme";
+import { theme } from "../../theme";
 
 export default function PrimaryButton({ label, Icon }) {
- return (
-  <PrimaryButtonStyled>
-   <span>{label}</span>
-   {Icon && Icon}
-  </PrimaryButtonStyled>
- )
+  return (
+    <PrimaryButtonStyled>
+      <span>{label}</span>
+      {Icon && Icon}
+    </PrimaryButtonStyled>
+  )
 }
 
 const PrimaryButtonStyled = styled.button`

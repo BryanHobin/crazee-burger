@@ -4,20 +4,20 @@ import Navbar from "./Navbar";
 import Main from "./Main";
 
 export default function OrderPage() {
- //state
- const { prenom } = useParams()
+  //state
+  const { prenom } = useParams()
 
- //compo
+  //compo
 
- //render
- return (
-  <OrderPageStyled>
-   <div className="container">
-    <Navbar username={prenom} />
-    <Main />
-   </div>
-  </OrderPageStyled>
- )
+  //render
+  return (
+    <OrderPageStyled>
+      <div className="container">
+        <Navbar username={prenom} />
+        <Main />
+      </div>
+    </OrderPageStyled>
+  )
 }
 
 const OrderPageStyled = styled.div`
@@ -28,11 +28,11 @@ const OrderPageStyled = styled.div`
   align-items: center;
 
   .container{
-   background-color: red;
    height: 95vh;
    width: 100%;
    max-width: 1400px;
    display: flex;
    flex-direction: column;
+   border-radius: ${theme.borderRadius.extraRound};
   }
 `;

@@ -17,7 +17,6 @@ export default function Menu() {
 }
 
 const MenuStyled = styled.div`
-  background-color: purple;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-row-gap: 60px;

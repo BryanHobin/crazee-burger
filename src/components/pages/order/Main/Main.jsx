@@ -24,4 +24,7 @@ const MainStyled = styled.div`
 
   display: grid;
   grid-template-columns: 0% 1fr;
+
+  overflow-y: scroll;
+
 `;

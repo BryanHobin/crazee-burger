@@ -12,7 +12,7 @@ export default function Navbar({ username }) {
 }
 
 const NavbarStyled = styled.nav`
-  background-color: blue;
+  background-color: white;
   height: 10vh;
   display: flex;
   justify-content: space-between;

@@ -4,16 +4,27 @@ import { fakeMenu1, fakeMenu2 } from "../../../../fakeData/fakeMenu";
 
 
 export default function Menu() {
- const [menu, setMenu] = useState(fakeMenu2)
+  const [menu, setMenu] = useState(fakeMenu2)
 
 
- return (
-  <MenuStyled>
-   {menu.map((produit) => {
-    return <div className="produit">{produit.title}</div>
-   })}
-  </MenuStyled>
- )
+  return (
+    <MenuStyled>
+      {menu.map((produit) => {
+        return <div className="produit">
+          <div className="image">
+            <img src={produit.imageSource} alt={produit.title} />
+          </div>
+          <div className="info-text">
+            <div className="title">{produit.title}</div>
+            <div className="description">
+              <div className="price">{produit.price}</div>
+              <div className="add-button">Ajouter</div>
+            </div>
+          </div>
+        </div>
+      })}
+    </MenuStyled>
+  )
 }
 
 const MenuStyled = styled.div`
@@ -27,6 +38,17 @@ const MenuStyled = styled.div`
    background-color: red;
    width: 240px;
    height: 330px;
+
+   .image{
+    border: 1px solid purple;
+    width: 200px;
+    height: auto;
+
+    img{
+      width:100%;
+      height: 100%;
+    }
+   }
 
   }
 `;

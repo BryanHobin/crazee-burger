@@ -22,21 +22,22 @@ const PrimaryButtonStyled = styled.button`
     line-height: 1;
 
     padding:18px 24px;
-    border-radius: 5px;
-    font-size: 15px;
-    font-weight: 800;
-    color: white;
+    border-radius: ${theme.borderRadius.round};
+    font-size: ${theme.fonts.size.P0};
+    font-weight: ${theme.fonts.weights.heavy};
+    color: ${theme.colors.white};
     border: 1px solid ${theme.colors.primary} ;
     transition: all 200ms ease-in-out;
 
     &:hover:not(:disabled){
-      background-color: #fff;
+      background-color:${theme.colors.white};
       color: ${theme.colors.primary};
       border: 1px solid ${theme.colors.primary} ;
+      cursor: pointer;
     }
 
     &:active{
-      color: white;
+      color: ${theme.colors.white};
       background-color: ${theme.colors.primary};
       border: 1px solid ${theme.colors.primary} ;
     }

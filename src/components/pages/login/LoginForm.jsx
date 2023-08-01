@@ -45,31 +45,31 @@ const LoginFormStyled = styled.form`
   max-width: 500px;
   min-width: 400px;
   margin: 0 auto;
-  padding:2.5rem 2rem;
-  border-radius: 5px;
+  padding:2.5rem ${theme.spacing.lg};
+  border-radius: ${theme.borderRadius.round};
 
 
   hr{
-    border:1.5px solid ${theme.colors.primary};
-    margin-bottom: 40px;
+    border:1.5px solid ${theme.colors.loginLine};
+    margin-bottom: ${theme.gridUnit * 5}px;
   }
 
   h1{
-    color: white;
-    font-size: 48px;
+    color: ${theme.colors.white};
+    font-size: ${theme.fonts.size.P5};
   }
 
   h2{
-    color: ${theme.colors.greyLight};
     margin: 20px 10px 10px;
-    font-size: 36px;
+    color: ${theme.colors.white};
+    font-size: ${theme.fonts.size.P4};
   }
   
   .icon{
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 15px;
+      font-size: ${theme.fonts.size.P0};
       margin-left: 10px;
     }
 

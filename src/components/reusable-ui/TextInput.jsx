@@ -18,8 +18,8 @@ export default function TextInput({ value, onChange, Icon, ...extraProps }) {
   )
 }
 const InputStyled = styled.div`
-    background-color: #fff;
-    border-radius: 5px;
+    background-color: ${theme.colors.white};
+    border-radius: ${theme.borderRadius.round};
     display: flex;
     align-items: center;
     padding: 18px 24px;
@@ -28,21 +28,23 @@ const InputStyled = styled.div`
 
     .icon{
       color:yellow;
-      font-size: 15px;
-      margin-right: 8px;
-      color:  ${theme.colors.greyMedium};
+      font-size: ${theme.fonts.size.P0};
+      margin-right: ${theme.gridUnit}px;
+      color:  ${theme.colors.greySemiDark};
 
     }
 
     input{
       border: none;
-      font-size: 15px;
+      font-size: ${theme.fonts.size.P0};
       color: ${theme.colors.greyDark};
       width: 100%;
+
+      &::placeholder{   
+      background-color: ${theme.colors.white};
+      color: ${theme.colors.greyExtraLight};
+      }
     }
 
-    &::placeholder{
-      background-color: #fff;
-      color: lightgray;
-    }
+    
 `;

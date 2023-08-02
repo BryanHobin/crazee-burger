@@ -8,7 +8,6 @@ export default function AdminPanel() {
 }
 
 const AdminPanelStyled = styled.div`
-  border: 1px solid red;
   background-color: ${theme.colors.white};
   height: 250px;
   border-top: 1px solid ${theme.colors.greyLight};

@@ -1,13 +1,14 @@
 import { styled } from 'styled-components';
 import { theme } from '../../theme';
 
-export default function Tab({ label, Icon, onClick }) {
- return (
-  <TabStyled>
-   {Icon && <span className="icon">{Icon}</span>}
-   {label && <span className="label">{label}</span>}
-  </TabStyled>
- )
+export default function Tab({ label, Icon, onClick, className }) {
+
+  return (
+    <TabStyled onClick={onClick} className={className} >
+      {Icon && <span className="icon">{Icon}</span>}
+      {label && <span className="label">{label}</span>}
+    </TabStyled>
+  )
 }
 const TabStyled = styled.button`
   background-color: ${theme.colors.white};
@@ -18,7 +19,6 @@ const TabStyled = styled.button`
   align-items: center;
   height:43px;
   padding:0 22px;
-  margin-right: 1px;
   top: 1px;
   position: relative;
   font-size: ${theme.fonts.size.XS};

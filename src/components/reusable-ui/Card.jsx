@@ -69,7 +69,7 @@ const CardStyled = styled.div`
      justify-content: flex-start;
      align-items: center;
      color: ${theme.colors.primary};
-    font-size: ${theme.fonts.size.P0};
+    font-size: ${theme.fonts.size.SM};
 
 
     }

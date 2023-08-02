@@ -4,12 +4,14 @@ import { styled } from "styled-components";
 import { ToastContainer, toast } from "react-toastify";
 
 import 'react-toastify/dist/ReactToastify.css';
-import { useState } from "react";
+import { useContext } from "react";
 import { theme } from "../../../../theme";
+import OrderContext from "../../../../context/OrderContext";
 
 
 export default function NavbarRightSide({ username }) {
-  const [isAdminMode, setIsAdminMode] = useState(false)
+  const { isAdminMode, setIsAdminMode } = useContext(OrderContext)
+
 
   const toastInfo = () => {
     if (!isAdminMode) {
@@ -31,7 +33,7 @@ export default function NavbarRightSide({ username }) {
 
   return (
     <NavbarRightSideStyled>
-      <ToggleButton labelIfUnchecked="Activer le mode admin" onToggle={toastInfo} labelIfChecked="Désactiver le mode admin" />
+      <ToggleButton isChecked={isAdminMode} labelIfUnchecked="Activer le mode admin" onToggle={toastInfo} labelIfChecked="Désactiver le mode admin" />
       <Profile username={username} className={"profile"} />
       <ToastContainer className="toaster" bodyClassName="body-toast" />
     </NavbarRightSideStyled>

@@ -1,25 +1,25 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import { BsPersonCircle } from "react-icons/bs";
-import { theme } from "../../../theme";
+import { theme } from "../../../../theme";
 
 
 export default function Profile({ username }) {
- return (
-  <ProfileStyled>
-   <div className="info">
-    <p>Hey, <b>{username}</b></p>
-    <Link to="/">
-     <div className="description">
-      <small>Se Déconnecter</small>
-     </div>
-    </Link>
-   </div>
-   <div className="picture">
-    <BsPersonCircle />
-   </div>
-  </ProfileStyled>
- )
+  return (
+    <ProfileStyled>
+      <div className="info">
+        <p>Hey, <b>{username}</b></p>
+        <Link to="/">
+          <div className="description">
+            <small>Se Déconnecter</small>
+          </div>
+        </Link>
+      </div>
+      <div className="picture">
+        <BsPersonCircle />
+      </div>
+    </ProfileStyled>
+  )
 }
 
 const ProfileStyled = styled.div`

@@ -4,9 +4,9 @@ import { BsPersonCircle } from "react-icons/bs";
 import { theme } from "../../../../theme";
 
 
-export default function Profile({ username }) {
+export default function Profile({ username, className }) {
   return (
-    <ProfileStyled>
+    <ProfileStyled className={className}>
       <div className="info">
         <p>Hey, <b>{username}</b></p>
         <Link to="/">

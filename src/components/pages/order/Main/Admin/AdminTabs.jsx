@@ -20,7 +20,7 @@ export default function AdminTabs() {
   return (
     <AdminTabsStyled>
       <Tab label="" Icon={isCollapsed ? <BsChevronUp /> : <BsChevronDown />} className={isCollapsed ? "is-active" : ""} onClick={() => setIsCollapsed(!isCollapsed)} />
-      {tabs.map((tab) => <Tab label={tab.label} Icon={tab.Icon} onClick={() => selectTab(tab.index)} className={currentTab === tab.index ? "is-active" : ""} />)}
+      {tabs.map((tab) => <Tab key={tab.index} label={tab.label} Icon={tab.Icon} onClick={() => selectTab(tab.index)} className={currentTab === tab.index ? "is-active" : ""} />)}
     </AdminTabsStyled>
   )
 }

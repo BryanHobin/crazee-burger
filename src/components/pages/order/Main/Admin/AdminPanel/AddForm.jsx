@@ -1,16 +1,42 @@
 import { styled } from 'styled-components';
 import { theme } from '../../../../../../theme';
+import { useContext, useState } from 'react';
+import OrderContext from '../../../../../../context/OrderContext';
 
 export default function AddForm() {
+
+ const { handleAddProduct } = useContext(OrderContext)
+ const [title, setTitle] = useState("")
+ const [imageSource, setImageSource] = useState("")
+ const [price, setPrice] = useState()
+
+
+ const handleSubmit = (event, title, imageSource, price) => {
+  event.preventDefault();
+  const productToAdd = {
+   id: new Date().getTime(),
+   title,
+   imageSource,
+   price
+  }
+  handleAddProduct(productToAdd)
+  setTitle("")
+  setImageSource("")
+  setPrice("")
+ }
+
  return (
-  <AddFormStyled>
+  <AddFormStyled onSubmit={(event) => handleSubmit(event, title, imageSource, price)}>
    <div className="image-preview">Image</div>
    <div className="inputs">
-    <input type="text" placeholder="Nom" />
-    <input type="text" placeholder="Image URL" />
-    <input type="text" placeholder="Prix" />
+    <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" placeholder="Nom" required />
+    <input value={imageSource} onChange={(e) => setImageSource(e.target.value)} type="text" placeholder="Image URL" required />
+    <input value={price} onChange={(e) => setPrice(e.target.value)} type="text" placeholder="Prix" required />
    </div>
-   <div className="submit">Submit</div>
+   <div className="submit">
+    <button>Submit</button>
+    <div>infoBox</div>
+   </div>
   </AddFormStyled>
  )
 }
@@ -34,6 +60,8 @@ const AddFormStyled = styled.form`
   }
   .submit{   
    grid-area: 4 / 2 / 4 / 3;
+   display: grid;
+   grid-template-columns: repeat(auto-fit,minmax(200px, 1fr));
 
   }
 `;

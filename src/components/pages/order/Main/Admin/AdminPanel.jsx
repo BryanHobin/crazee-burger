@@ -7,12 +7,12 @@ import { getTabsConfig } from './tabsConfig';
 export default function AdminPanel() {
   const { currentTab } = useContext(OrderContext)
 
-  const tabs = getTabsConfig(currentTab)
+  const tabs = getTabsConfig()
   const tabSelected = tabs.find((tab) => tab.index === currentTab)
 
   return (
     <AdminPanelStyled>
-      {currentTab === tabSelected.index && tabSelected.label}
+      {tabSelected && tabSelected.label}
     </AdminPanelStyled>
   )
 }

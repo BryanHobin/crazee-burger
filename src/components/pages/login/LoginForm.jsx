@@ -10,20 +10,20 @@ import { theme } from "../../../theme";
 
 export default function LoginForm() {
   //state
-  const [prenom, setPrenom] = useState("");
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
 
   //compo
   const handleChange = (e) => {
-    setPrenom(e.target.value);
+    setUsername(e.target.value);
   }
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setPrenom("");
-    navigate(`order/${prenom}`);
+    setUsername("");
+    navigate(`order/${username}`);
   };
   return (
     <>
@@ -31,7 +31,7 @@ export default function LoginForm() {
         <h1>Bienvenue chez nous !</h1>
         <hr />
         <h2>Connectez-vous</h2>
-        <TextInput value={prenom} onChange={handleChange} Icon={<BsPersonCircle className="icon" />} placeholder={"Entrez votre prénom"} required />
+        <TextInput value={username} onChange={handleChange} Icon={<BsPersonCircle className="icon" />} placeholder={"Entrez votre prénom"} required />
         <PrimaryButton label={"Accéder à mon espace"} Icon={<IoChevronForward className="icon" />} />
 
       </LoginFormStyled>
@@ -69,7 +69,7 @@ const LoginFormStyled = styled.form`
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: ${theme.fonts.size.P0};
+      font-size: ${theme.fonts.size.SM};
       margin-left: 10px;
     }
 

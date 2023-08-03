@@ -2,12 +2,22 @@ import { styled } from "styled-components";
 import { theme } from "../../../../theme";
 import Basket from "./Basket";
 import Menu from "./Menu";
+import Admin from "./Admin/Admin";
+import { useContext } from "react";
+import OrderContext from "../../../../context/OrderContext";
 
 export default function Main() {
+  const { isAdminMode, setIsAdminMode } = useContext(OrderContext)
+
+
+
   return (
     <MainStyled>
       <Basket />
-      <Menu />
+      <div className="menu-and-admin">
+        <Menu />
+        {isAdminMode && <Admin />}
+      </div>
     </MainStyled>
   )
 }
@@ -15,16 +25,23 @@ export default function Main() {
 
 const MainStyled = styled.div`
   background-color: ${theme.colors.background_white};
-  flex:1;
+  height: calc(95vh - 10vh);
+  box-shadow: ${theme.shadows.strong};
 
-  box-shadow: 0px 8px 20px 8px rgba(0,0,0,0.2) inset;
-
-  border-bottom-left-radius: ${theme.borderRadius.extraRound};
-  border-bottom-right-radius: ${theme.borderRadius.extraRound};
 
   display: grid;
   grid-template-columns: 0% 1fr;
 
-  overflow-y: scroll;
+  border-bottom-left-radius: ${theme.borderRadius.extraRound};
+  border-bottom-right-radius: ${theme.borderRadius.extraRound};
 
+
+  .menu-and-admin{
+    position: relative;
+    overflow-y: hidden;
+    display: grid;
+    border-bottom-left-radius: ${theme.borderRadius.extraRound};
+    border-bottom-right-radius: ${theme.borderRadius.extraRound};
+  }
+  
 `;

@@ -28,7 +28,7 @@ const InputStyled = styled.div`
 
     .icon{
       color:yellow;
-      font-size: ${theme.fonts.size.P0};
+      font-size: ${theme.fonts.size.SM};
       margin-right: ${theme.gridUnit}px;
       color:  ${theme.colors.greySemiDark};
 
@@ -36,7 +36,7 @@ const InputStyled = styled.div`
 
     input{
       border: none;
-      font-size: ${theme.fonts.size.P0};
+      font-size: ${theme.fonts.size.SM};
       color: ${theme.colors.greyDark};
       width: 100%;
 

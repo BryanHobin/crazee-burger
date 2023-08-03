@@ -32,7 +32,7 @@ const CardStyled = styled.div`
    padding-left: 20px;
    padding-right: 20px;
    padding-bottom:10px;
-   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
+   box-shadow: ${theme.shadows.medium};
    border-radius: ${theme.borderRadius.extraRound};
 
    .image{
@@ -69,7 +69,7 @@ const CardStyled = styled.div`
      justify-content: flex-start;
      align-items: center;
      color: ${theme.colors.primary};
-    font-size: ${theme.fonts.size.P0};
+    font-size: ${theme.fonts.size.SM};
 
 
     }

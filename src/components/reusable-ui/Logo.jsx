@@ -12,7 +12,7 @@ export default function Logo({ className, onClick }) {
 }
 
 const LogoStyled = styled.div`
-  color: white;
+  color: ${theme.colors.white};
   display: flex;
   align-items: center;
 

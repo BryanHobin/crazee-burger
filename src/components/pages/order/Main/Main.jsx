@@ -26,7 +26,7 @@ export default function Main() {
 const MainStyled = styled.div`
   background-color: ${theme.colors.background_white};
   height: calc(95vh - 10vh);
-  box-shadow: 0px 8px 20px 8px rgba(0,0,0,0.2) inset;
+  box-shadow: ${theme.shadows.strong};
 
 
   display: grid;

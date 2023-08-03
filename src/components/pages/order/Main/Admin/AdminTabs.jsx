@@ -8,25 +8,25 @@ import OrderContext from "../../../../../context/OrderContext";
 
 export default function AdminTabs() {
   const { isCollapsed, setIsCollapsed, isAddSelected, setIsAddSelected, isEditSelected, setIsEditSelected } = useContext(OrderContext)
-  const selectEdit = () => {
-    setIsAddSelected(false)
 
+  const selectTab = (tabSelected) => {
     setIsCollapsed(false)
-    setIsEditSelected(true)
-  }
+    if (tabSelected === "add") {
+      setIsAddSelected(true)
+      setIsEditSelected(false)
+    }
 
-  const selectAdd = () => {
-    setIsEditSelected(false)
-
-    setIsCollapsed(false)
-    setIsAddSelected(true)
+    if (tabSelected === "edit") {
+      setIsAddSelected(false)
+      setIsEditSelected(true)
+    }
   }
 
   return (
     <AdminTabsStyled>
       <Tab Icon={isCollapsed ? <BsChevronUp /> : <BsChevronDown />} onClick={() => { setIsCollapsed(!isCollapsed) }} className={isCollapsed ? "is-active" : ""} />
-      <Tab Icon={<AiOutlinePlus />} label={"Ajouter un nouveau produit"} onClick={selectAdd} className={isAddSelected ? "is-active" : ""} />
-      <Tab Icon={<BsFillPencilFill />} label={"Modifier un produit"} onClick={selectEdit} className={isEditSelected ? "is-active" : ""} />
+      <Tab Icon={<AiOutlinePlus />} label={"Ajouter un nouveau produit"} onClick={() => selectTab("add")} className={isAddSelected ? "is-active" : ""} />
+      <Tab Icon={<BsFillPencilFill />} label={"Modifier un produit"} onClick={() => selectTab("edit")} className={isEditSelected ? "is-active" : ""} />
     </AdminTabsStyled>
   )
 }

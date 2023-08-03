@@ -15,18 +15,41 @@ export default function AdminTabs() {
       setIsAddSelected(true)
       setIsEditSelected(false)
     }
-
     if (tabSelected === "edit") {
       setIsAddSelected(false)
       setIsEditSelected(true)
     }
   }
 
+  const tabsConfig = [
+    {
+      label: "",
+      Icon: isCollapsed ? <BsChevronUp /> : <BsChevronDown />,
+      onClick: () => { setIsCollapsed(!isCollapsed) },
+      className: isCollapsed ? "is-active" : "",
+    },
+    {
+      label: "Ajouter un produit",
+      Icon: <AiOutlinePlus />,
+      onClick: () => selectTab("add"),
+      className: isAddSelected ? "is-active" : "",
+    },
+    {
+      label: "Modifier un produit",
+      Icon: <BsFillPencilFill />,
+      onClick: () => selectTab("edit"),
+      className: isEditSelected ? "is-active" : "",
+    }
+  ]
+
+
   return (
     <AdminTabsStyled>
-      <Tab Icon={isCollapsed ? <BsChevronUp /> : <BsChevronDown />} onClick={() => { setIsCollapsed(!isCollapsed) }} className={isCollapsed ? "is-active" : ""} />
-      <Tab Icon={<AiOutlinePlus />} label={"Ajouter un nouveau produit"} onClick={() => selectTab("add")} className={isAddSelected ? "is-active" : ""} />
-      <Tab Icon={<BsFillPencilFill />} label={"Modifier un produit"} onClick={() => selectTab("edit")} className={isEditSelected ? "is-active" : ""} />
+      {tabsConfig.map((tab) => {
+        return (
+          <Tab label={tab.label} Icon={tab.Icon} onClick={tab.onClick} className={tab.className} />
+        )
+      })}
     </AdminTabsStyled>
   )
 }

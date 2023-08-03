@@ -13,4 +13,8 @@ export default createContext({
  isEditSelected: false,
  setIsEditSelected: () => { },
 
+ currentTab: "",
+ setCurrentTab: () => { },
+
+
 })

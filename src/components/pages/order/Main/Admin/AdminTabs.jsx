@@ -1,55 +1,26 @@
 import { styled } from "styled-components";
 import Tab from "../../../../reusable-ui/Tab";
-import { BsFillPencilFill, BsChevronDown, BsChevronUp } from "react-icons/bs";
-import { AiOutlinePlus } from "react-icons/ai";
+import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { theme } from "../../../../../theme";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
+import { getTabsConfig } from "./tabsConfig";
 
 export default function AdminTabs() {
-  const { isCollapsed, setIsCollapsed, isAddSelected, setIsAddSelected, isEditSelected, setIsEditSelected } = useContext(OrderContext)
+  const { isCollapsed, setIsCollapsed, isAddSelected, setIsAddSelected, isEditSelected, setIsEditSelected, currentTab, setCurrentTab } = useContext(OrderContext)
 
   const selectTab = (tabSelected) => {
     setIsCollapsed(false)
-    if (tabSelected === "add") {
-      setIsAddSelected(true)
-      setIsEditSelected(false)
-    }
-    if (tabSelected === "edit") {
-      setIsAddSelected(false)
-      setIsEditSelected(true)
-    }
+    setCurrentTab(tabSelected)
   }
 
-  const tabsConfig = [
-    {
-      label: "",
-      Icon: isCollapsed ? <BsChevronUp /> : <BsChevronDown />,
-      onClick: () => { setIsCollapsed(!isCollapsed) },
-      className: isCollapsed ? "is-active" : "",
-    },
-    {
-      label: "Ajouter un produit",
-      Icon: <AiOutlinePlus />,
-      onClick: () => selectTab("add"),
-      className: isAddSelected ? "is-active" : "",
-    },
-    {
-      label: "Modifier un produit",
-      Icon: <BsFillPencilFill />,
-      onClick: () => selectTab("edit"),
-      className: isEditSelected ? "is-active" : "",
-    }
-  ]
+  const tabs = getTabsConfig(currentTab)
 
 
   return (
     <AdminTabsStyled>
-      {tabsConfig.map((tab) => {
-        return (
-          <Tab label={tab.label} Icon={tab.Icon} onClick={tab.onClick} className={tab.className} />
-        )
-      })}
+      <Tab label="" Icon={isCollapsed ? <BsChevronUp /> : <BsChevronDown />} className={isCollapsed ? "is-active" : ""} onClick={() => setIsCollapsed(!isCollapsed)} />
+      {tabs.map((tab) => <Tab label={tab.label} Icon={tab.Icon} onClick={() => selectTab(tab.index)} className={tab.className} />)}
     </AdminTabsStyled>
   )
 }

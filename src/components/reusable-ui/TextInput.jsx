@@ -1,5 +1,6 @@
 import { css, styled } from "styled-components";
 import { theme } from "../../theme";
+import { version } from "react";
 
 export default function TextInput({ value, onChange, Icon, className, version = "normal", ...extraProps }) {
   //state
@@ -50,13 +51,11 @@ const TextInputStyled = styled.div`
       }
     }
 
-    ${(props) => {
-    if (props.version === "minimalist") return extraMinimalistStyle
-  }}
+    ${({ version }) => extraStyle[version]}
 `
 
 
-const extraMinimalistStyle = css`
+const extraStyleMinimalist = css`
 background-color: ${theme.colors.background_white};
 padding: ${theme.gridUnit}px ${theme.gridUnit * 2}px ;
 color: ${theme.colors.greyBlue};
@@ -71,3 +70,8 @@ input{
   }
 }
 `
+
+const extraStyle = {
+  normal: "",
+  minimalist: extraStyleMinimalist,
+}

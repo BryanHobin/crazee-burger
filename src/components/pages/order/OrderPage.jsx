@@ -6,15 +6,16 @@ import { useState } from "react";
 import OrderContext from "../../../context/OrderContext";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
 
+const DEFAULT_MENU = fakeMenu.SMALL
+
 export default function OrderPage() {
   //state
   const [isAdminMode, setIsAdminMode] = useState(true)
-  const [isCollapsed, setIsCollapsed] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(true)
   const [isEditSelected, setIsEditSelected] = useState(false)
   const [isAddSelected, setIsAddSelected] = useState(true)
   const [currentTab, setCurrentTab] = useState("add");
-  const [menu, setMenu] = useState(fakeMenu.MEDIUM)
-
+  const [menu, setMenu] = useState(DEFAULT_MENU)
 
 
   //compo
@@ -35,8 +36,14 @@ export default function OrderPage() {
     setMenu(menuUpdated);
   }
 
+  const resetMenu = () => {
+    setMenu(DEFAULT_MENU);
+  }
+
   const orderContextValue = {
-    isAdminMode, setIsAdminMode, isCollapsed,
+    isAdminMode,
+    setIsAdminMode,
+    isCollapsed,
     setIsCollapsed,
     isAddSelected,
     setIsAddSelected,
@@ -47,7 +54,8 @@ export default function OrderPage() {
     handleAddProduct,
     menu,
     setMenu,
-    handleDelete
+    handleDelete,
+    resetMenu
   }
 
   //render

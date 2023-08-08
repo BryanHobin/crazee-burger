@@ -2,6 +2,8 @@ import { styled } from 'styled-components';
 import { theme } from '../../../../../../theme';
 import { useContext, useState } from 'react';
 import OrderContext from '../../../../../../context/OrderContext';
+import { FiCheck } from "react-icons/fi";
+
 
 const EMPTY_PRODUCT = {
   id: "",
@@ -9,11 +11,13 @@ const EMPTY_PRODUCT = {
   imageSource: "",
   price: 0
 }
+const SUCCESS_MESSAGE = "Ajouté avec succès"
 
 export default function AddForm() {
 
   const { handleAddProduct } = useContext(OrderContext)
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
 
   const handleSubmit = (event) => {
@@ -26,6 +30,15 @@ export default function AddForm() {
     }
     handleAddProduct(productToAdd)
     setNewProduct(EMPTY_PRODUCT)
+    displaySucessMessage()
+
+  }
+
+  const displaySucessMessage = () => {
+    setIsSubmitted(true)
+    setTimeout(() => {
+      setIsSubmitted(false)
+    }, 2000);
   }
 
   const handleChange = (event) => {
@@ -33,31 +46,30 @@ export default function AddForm() {
   }
 
   return (
-    <AddFormStyled onSubmit={(event) => handleSubmit(event, title, imageSource, price)}>
-      <div className="image-preview">Aucune Image</div>
+    <AddFormStyled onSubmit={handleSubmit}>
+      <div className="image-preview">{newProduct.imageSource ? <img src={newProduct.imageSource} alt={newProduct.title} /> : "Aucune image"}</div>
       <div className="inputs">
-        <input name="title" value={newProduct.title} onChange={handleChange} type="text" placeholder="Nom" required />
-        <input name="imageSource" value={newProduct.imageSource} onChange={handleChange} type="text" placeholder="Image URL" required />
-        <input name="price" value={newProduct.price ? newProduct.price : ""} onChange={handleChange} type="text" placeholder="Prix" required />
+        <input name="title" value={newProduct.title} onChange={handleChange} type="text" placeholder="Nom" />
+        <input name="imageSource" value={newProduct.imageSource} onChange={handleChange} type="text" placeholder="Image URL" />
+        <input name="price" value={newProduct.price ? newProduct.price : ""} onChange={handleChange} type="text" placeholder="Prix" />
       </div>
       <div className="submit">
         <button>Submit</button>
-        <div className="info-box">infoBox</div>
+        {isSubmitted && (
+          <div className="success-message">
+            <FiCheck />
+            <span>{SUCCESS_MESSAGE}</span>
+          </div>)}
       </div>
     </AddFormStyled>
   )
 }
 const AddFormStyled = styled.form`
-  border: 1px solid red;
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-template-rows: repeat(4, 1fr);
   grid-gap: ${theme.gridUnit}px;
   height: 100%;
-/* 
-  & > div {
-  border: 1px solid #000; 
-  } */
   .image-preview{
    grid-area: 1 / 1/ 4 / 2;
    display: flex;
@@ -66,6 +78,13 @@ const AddFormStyled = styled.form`
    border:1px solid ${theme.colors.greyLight};
    color: ${theme.colors.greySemiDark};
    border-radius: ${theme.borderRadius.extraRound};
+
+   img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+   }
   }
   .inputs{
    grid-area: 1 / 2 / 4 / 3;
@@ -74,12 +93,13 @@ const AddFormStyled = styled.form`
   .submit{   
    grid-area: 4 / 2 / 4 / 3;
    display: grid;
-   grid-template-columns: repeat(auto-fit,minmax(200px, 1fr));
+   grid-template-columns: repeat(2,minmax(200px, 1fr));
 
-   .info-box{
+   .success-message{
     display: flex;
     justify-content: center;
     align-items: center;
+    color: ${theme.colors.green};
    }
   }
 `;

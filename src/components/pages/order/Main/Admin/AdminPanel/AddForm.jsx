@@ -16,10 +16,10 @@ export default function AddForm() {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
 
 
-  const handleSubmit = (event, title, imageSource, price) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const productToAdd = {
-      id: new Date().getTime(),
+      id: crypto.randomUUID(),
       title: newProduct.title,
       imageSource: newProduct.imageSource,
       price: newProduct.price
@@ -29,9 +29,7 @@ export default function AddForm() {
   }
 
   const handleChange = (event) => {
-    const newValue = event.target.value
-    const name = event.target.name
-    setNewProduct({ ...newProduct, [name]: newValue })
+    setNewProduct({ ...newProduct, [event.target.name]: event.target.value })
   }
 
   return (

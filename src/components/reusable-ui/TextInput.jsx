@@ -1,12 +1,12 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 import { theme } from "../../theme";
 
-export default function TextInput({ value, onChange, Icon, ...extraProps }) {
+export default function TextInput({ value, onChange, Icon, className, version = "normal", ...extraProps }) {
   //state
 
   //render
   return (
-    <InputStyled>
+    <TextInputStyled className={className} version={version}>
       <div className="icon">{Icon && Icon}</div>
       <input
         value={value}
@@ -14,18 +14,16 @@ export default function TextInput({ value, onChange, Icon, ...extraProps }) {
         type="text"
         {...extraProps}
       />
-    </InputStyled>
+    </TextInputStyled>
   )
 }
-const InputStyled = styled.div`
-    background-color: ${theme.colors.white};
+const TextInputStyled = styled.div`
+    background-color: ${theme.colors.white};    
     border-radius: ${theme.borderRadius.round};
     display: flex;
     align-items: center;
     padding: 18px 24px;
-    margin: 18px 0;
      
-
     .icon{
       display: flex;
       align-items: center;
@@ -39,14 +37,37 @@ const InputStyled = styled.div`
     input{
       border: none;
       font-size: ${theme.fonts.size.SM};
-      color: ${theme.colors.greyDark};
+      color: ${theme.colors.greySemiDark};
       width: 100%;
 
+      &:focus{
+        outline: 0;
+      }
+
       &::placeholder{   
-      background-color: ${theme.colors.white};
-      color: ${theme.colors.greyExtraLight};
+        background-color: ${theme.colors.white};
+        color: ${theme.colors.greySemiDark};
       }
     }
 
-    
-`;
+    ${(props) => {
+    if (props.version === "minimalist") return extraMinimalistStyle
+  }}
+`
+
+
+const extraMinimalistStyle = css`
+background-color: ${theme.colors.background_white};
+padding: ${theme.gridUnit}px ${theme.gridUnit * 2}px ;
+color: ${theme.colors.greyBlue};
+
+input{
+  background: ${theme.colors.background_white};
+  color: ${theme.colors.dark};
+
+  
+  &::placeholder{   
+      background-color: ${theme.colors.background_white};
+  }
+}
+`

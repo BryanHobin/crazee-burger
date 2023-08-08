@@ -3,7 +3,10 @@ import { theme } from '../../../../../../theme';
 import { useContext, useState } from 'react';
 import OrderContext from '../../../../../../context/OrderContext';
 import { FiCheck } from "react-icons/fi";
-
+import { FaHamburger } from "react-icons/fa";
+import { BsCameraFill } from "react-icons/bs";
+import { MdOutlineEuro } from "react-icons/md";
+import TextInput from '../../../../../reusable-ui/TextInput';
 
 const EMPTY_PRODUCT = {
   id: "",
@@ -49,12 +52,36 @@ export default function AddForm() {
     <AddFormStyled onSubmit={handleSubmit}>
       <div className="image-preview">{newProduct.imageSource ? <img src={newProduct.imageSource} alt={newProduct.title} /> : "Aucune image"}</div>
       <div className="inputs">
-        <input name="title" value={newProduct.title} onChange={handleChange} type="text" placeholder="Nom" />
-        <input name="imageSource" value={newProduct.imageSource} onChange={handleChange} type="text" placeholder="Image URL" />
-        <input name="price" value={newProduct.price ? newProduct.price : ""} onChange={handleChange} type="text" placeholder="Prix" />
+        <TextInput
+          name="title"
+          value={newProduct.title}
+          onChange={handleChange}
+          type="text"
+          placeholder="Nom du produit (ex. Super Burger)"
+          Icon={<FaHamburger />}
+          version="minimalist"
+        />
+        <TextInput
+          name="imageSource"
+          value={newProduct.imageSource}
+          onChange={handleChange}
+          type="text"
+          placeholder="Lien URL d'une image (ex. https://la-photo-de-mon-produit)"
+          Icon={<BsCameraFill />}
+          version="minimalist"
+        />
+        <TextInput
+          name="price"
+          value={newProduct.price ? newProduct.price : ""}
+          onChange={handleChange}
+          type="text"
+          placeholder="Prix"
+          Icon={<MdOutlineEuro />}
+          version="minimalist"
+        />
       </div>
       <div className="submit">
-        <button>Submit</button>
+        <button>Ajouter un nouveau produit au menu</button>
         {isSubmitted && (
           <div className="success-message">
             <FiCheck />
@@ -70,6 +97,7 @@ const AddFormStyled = styled.form`
   grid-template-rows: repeat(4, 1fr);
   grid-gap: ${theme.gridUnit}px;
   height: 100%;
+
   .image-preview{
    grid-area: 1 / 1/ 4 / 2;
    display: flex;
@@ -89,8 +117,11 @@ const AddFormStyled = styled.form`
   .inputs{
    grid-area: 1 / 2 / 4 / 3;
    display: grid;
+   grid-row-gap:${theme.gridUnit}px;
 
-   input{}
+   .input{
+
+   }
   }
   .submit{   
    grid-area: 4 / 2 / 4 / 3;

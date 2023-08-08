@@ -1,9 +1,6 @@
-import { useContext } from 'react';
 import { styled } from 'styled-components';
-import OrderContext from '../../../../../context/OrderContext';
 
 export default function EmptyMenuClient() {
- const { resetMenu } = useContext(OrderContext)
 
 
  return (

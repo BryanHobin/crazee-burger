@@ -89,6 +89,8 @@ const AddFormStyled = styled.form`
   .inputs{
    grid-area: 1 / 2 / 4 / 3;
    display: grid;
+
+   input{}
   }
   .submit{   
    grid-area: 4 / 2 / 4 / 3;

@@ -7,7 +7,7 @@ export default function TextInput({ value, onChange, Icon, ...extraProps }) {
   //render
   return (
     <InputStyled>
-      {Icon && Icon}
+      <div className="icon">{Icon && Icon}</div>
       <input
         value={value}
         onChange={onChange}
@@ -27,11 +27,13 @@ const InputStyled = styled.div`
      
 
     .icon{
-      color:yellow;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: ${theme.fonts.size.SM};
       margin-right: ${theme.gridUnit}px;
+      margin-left: ${theme.gridUnit}px;
       color:  ${theme.colors.greySemiDark};
-
     }
 
     input{

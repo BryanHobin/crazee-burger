@@ -9,7 +9,7 @@ import { MdOutlineEuro } from "react-icons/md";
 import TextInput from '../../../../../reusable-ui/TextInput';
 import Button from '../../../../../reusable-ui/Button';
 
-const EMPTY_PRODUCT = {
+export const EMPTY_PRODUCT = {
   id: "",
   title: "",
   imageSource: "",
@@ -19,8 +19,7 @@ const SUCCESS_MESSAGE = "Ajouté avec succès"
 
 export default function AddForm() {
 
-  const { handleAddProduct } = useContext(OrderContext)
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
+  const { handleAddProduct, newProduct, setNewProduct } = useContext(OrderContext)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
 
@@ -88,7 +87,7 @@ export default function AddForm() {
           version="success" />
         {isSubmitted && (
           <div className="success-message">
-            <FiCheck />
+            <FiCheck className='success-icon' />
             <span>{SUCCESS_MESSAGE}</span>
           </div>)}
       </div>
@@ -129,11 +128,20 @@ const AddFormStyled = styled.form`
    display: grid;
    grid-template-columns: repeat(2,minmax(200px, 1fr));
 
+   
    .success-message{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    color: ${theme.colors.green};
+    color: ${theme.colors.success};
+    padding-left: ${theme.gridUnit * 2}px;
+
+    .success-icon{
+    border: 1px solid ${theme.colors.success};
+    border-radius: ${theme.borderRadius.circle};
+    margin-right:${theme.gridUnit}px;
+   }
+
    }
   }
 `;

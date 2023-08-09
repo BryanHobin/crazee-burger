@@ -2,12 +2,13 @@ import { styled } from 'styled-components';
 import { theme } from '../../../../../../theme';
 import { useContext, useState } from 'react';
 import OrderContext from '../../../../../../context/OrderContext';
-import { FiCheck } from "react-icons/fi";
 import { FaHamburger } from "react-icons/fa";
 import { BsCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
 import TextInput from '../../../../../reusable-ui/TextInput';
 import Button from '../../../../../reusable-ui/Button';
+import ImagePreview from './ImagePreview';
+import SuccessMessage from './SuccessMessage';
 
 export const EMPTY_PRODUCT = {
   id: "",
@@ -15,8 +16,6 @@ export const EMPTY_PRODUCT = {
   imageSource: "",
   price: 0
 }
-const SUCCESS_MESSAGE = "Ajouté avec succès"
-
 export default function AddForm() {
 
   const { handleAddProduct, newProduct, setNewProduct } = useContext(OrderContext)
@@ -50,7 +49,7 @@ export default function AddForm() {
 
   return (
     <AddFormStyled onSubmit={handleSubmit}>
-      <div className="image-preview">{newProduct.imageSource ? <img src={newProduct.imageSource} alt={newProduct.title} /> : "Aucune image"}</div>
+      <ImagePreview />
       <div className="inputs">
         <TextInput
           name="title"
@@ -86,10 +85,7 @@ export default function AddForm() {
           label="Ajouter un nouveau produit"
           version="success" />
         {isSubmitted && (
-          <div className="success-message">
-            <FiCheck className='success-icon' />
-            <span>{SUCCESS_MESSAGE}</span>
-          </div>)}
+          <SuccessMessage />)}
       </div>
     </AddFormStyled>
   )
@@ -101,22 +97,7 @@ const AddFormStyled = styled.form`
   grid-gap: ${theme.gridUnit}px;
   height: 100%;
 
-  .image-preview{
-   grid-area: 1 / 1/ 4 / 2;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   border:1px solid ${theme.colors.greyLight};
-   color: ${theme.colors.greySemiDark};
-   border-radius: ${theme.borderRadius.extraRound};
-
-   img{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center center;
-   }
-  }
+  
   .inputs{
    grid-area: 1 / 2 / 4 / 3;
    display: grid;
@@ -129,19 +110,6 @@ const AddFormStyled = styled.form`
    grid-template-columns: repeat(2,minmax(200px, 1fr));
 
    
-   .success-message{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    color: ${theme.colors.success};
-    padding-left: ${theme.gridUnit * 2}px;
 
-    .success-icon{
-    border: 1px solid ${theme.colors.success};
-    border-radius: ${theme.borderRadius.circle};
-    margin-right:${theme.gridUnit}px;
-   }
-
-   }
   }
 `;

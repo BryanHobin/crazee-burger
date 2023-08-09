@@ -7,7 +7,7 @@ import OrderContext from "../../../context/OrderContext";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "./Main/Admin/AdminPanel/AddForm";
 
-const DEFAULT_MENU = fakeMenu.SMALL
+const DEFAULT_MENU = fakeMenu.LARGE
 
 export default function OrderPage() {
   //state

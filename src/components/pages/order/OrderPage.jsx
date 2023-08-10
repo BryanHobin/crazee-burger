@@ -24,7 +24,7 @@ export default function OrderPage() {
   //compo
 
   const handleAddProduct = (nouveauProduit) => {
-    const menuCopy = [...menu]
+    const menuCopy = JSON.parse(JSON.stringify(menu))
 
     const menuUpdated = [nouveauProduit, ...menuCopy]
 
@@ -32,7 +32,7 @@ export default function OrderPage() {
   }
 
   const handleDelete = (idOfProductToDelete) => {
-    const menuCopy = [...menu]
+    const menuCopy = JSON.parse(JSON.stringify(menu))
 
     const menuUpdated = menuCopy.filter((product) => product.id !== idOfProductToDelete)
 

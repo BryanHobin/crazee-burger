@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import OrderContext from '../../../../../../context/OrderContext';
 import { theme } from '../../../../../../theme';
 import TextInput from '../../../../../reusable-ui/TextInput';
@@ -21,7 +21,7 @@ export default function EditForm() {
 
   return (
     <EditFormStyled>
-      <ImagePreview product={productSelected} />
+      <ImagePreview imageSource={productSelected.imageSource} title={productSelected.title} />
       <div className="inputs">
         {inputTexts.map(input => (
           <TextInput

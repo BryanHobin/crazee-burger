@@ -5,7 +5,7 @@ import Navbar from "./Navbar/Navbar";
 import { useState } from "react";
 import OrderContext from "../../../context/OrderContext";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
-import { EMPTY_PRODUCT } from "./Main/Admin/AdminPanel/AddForm";
+import { EMPTY_PRODUCT } from "../../../enums/product";
 
 const DEFAULT_MENU = fakeMenu.LARGE
 
@@ -42,6 +42,7 @@ export default function OrderPage() {
   const handleEdit = (idProductSelected) => {
     const productSelected = menu.find((product) => product.id === idProductSelected)
     console.log(productSelected)
+    setProductSelected(productSelected)
   }
 
   const resetMenu = () => {

@@ -7,13 +7,9 @@ import Button from '../../../../../reusable-ui/Button';
 import ImagePreview from './ImagePreview';
 import SuccessMessage from './SuccessMessage';
 import { getInputTextsConfig } from './getInputTextConfig';
+import { EMPTY_PRODUCT } from '../../../../../../enums/product';
 
-export const EMPTY_PRODUCT = {
-  id: "",
-  title: "",
-  imageSource: "",
-  price: 0
-}
+
 export default function AddForm() {
 
   const { handleAddProduct, newProduct, setNewProduct } = useContext(OrderContext)

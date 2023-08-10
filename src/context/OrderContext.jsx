@@ -26,11 +26,11 @@ export default createContext({
  resetMenu: () => { },
 
 
- newProduct: [],
+ newProduct: {},
  setNewProduct: () => { },
 
 
- productSelected: [],
+ productSelected: {},
  setProductSelected: () => { },
 
  handleEdit: () => { },

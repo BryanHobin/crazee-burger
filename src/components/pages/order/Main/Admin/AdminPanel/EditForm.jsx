@@ -21,7 +21,7 @@ export default function EditForm() {
 
   return (
     <EditFormStyled>
-      <ImagePreview imageSource={productSelected.imageSource} title={productSelected.title} />
+      <ImagePreview product={productSelected} />
       <div className="inputs">
         {inputTexts.map(input => (
           <TextInput

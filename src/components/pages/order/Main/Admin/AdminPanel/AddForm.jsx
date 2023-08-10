@@ -46,7 +46,7 @@ export default function AddForm() {
 
   return (
     <AddFormStyled onSubmit={handleSubmit}>
-      <ImagePreview imageSource={newProduct.imageSource} title={newProduct.title} />
+      <ImagePreview product={newProduct} />
       <div className="inputs">
         {inputTexts.map(input => (
           <TextInput

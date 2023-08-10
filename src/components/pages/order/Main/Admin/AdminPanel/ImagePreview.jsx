@@ -1,11 +1,11 @@
 import { styled } from 'styled-components';
 import { theme } from '../../../../../../theme';
 
-export default function ImagePreview(imageSource, title) {
+export default function ImagePreview({ product }) {
 
  return (
   <ImagePreviewStyled>
-   {imageSource ? <img src={imageSource} alt={title} /> : "Aucune image"}
+   {product.imageSource ? <img src={product.imageSource} alt={product.title} /> : "Aucune image"}
   </ImagePreviewStyled>
  )
 }

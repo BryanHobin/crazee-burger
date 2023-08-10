@@ -39,10 +39,13 @@ export default function OrderPage() {
     setMenu(menuUpdated);
   }
 
-  const handleEdit = (idProductSelected) => {
-    const productSelected = menu.find((product) => product.id === idProductSelected)
-    console.log(productSelected)
-    setProductSelected(productSelected)
+  const handleEdit = (productEdited) => {
+    const menuCopy = JSON.parse(JSON.stringify(menu))
+    const indexOfProductEdited = menu.findIndex((product) => product.id === productEdited.id)
+
+    menuCopy[indexOfProductEdited] = productEdited;
+
+    setMenu(menuCopy);
   }
 
   const resetMenu = () => {

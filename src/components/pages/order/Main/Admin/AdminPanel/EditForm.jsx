@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
-import HintMessage from './HintMessage';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import OrderContext from '../../../../../../context/OrderContext';
 import { theme } from '../../../../../../theme';
 import TextInput from '../../../../../reusable-ui/TextInput';
@@ -9,22 +8,19 @@ import { getInputTextsConfig } from './getInputTextConfig';
 
 export default function EditForm() {
 
-  const { productSelected, setProductSelected, setMenu, menu } = useContext(OrderContext)
+  const { productSelected, setProductSelected, handleEdit } = useContext(OrderContext)
 
   const inputTexts = getInputTextsConfig(productSelected);
 
   const handleChange = (event) => {
-    setProductSelected({ ...productSelected, [event.target.name]: event.target.value })
-    /* const menuCopy = [...menu]
+    const productEdited = { ...productSelected, [event.target.name]: event.target.value }
 
-    const menuUpdated = [productSelected, ...menuCopy]
-
-    setMenu(menuUpdated) */
+    setProductSelected(productEdited)
+    handleEdit(productEdited)
   }
 
   return (
     <EditFormStyled>
-      <HintMessage />
       <ImagePreview product={productSelected} />
       <div className="inputs">
         {inputTexts.map(input => (

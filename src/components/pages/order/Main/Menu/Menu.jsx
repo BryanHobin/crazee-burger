@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { styled } from "styled-components";
 import Card from "../../../../reusable-ui/Card";
 import { formatPrice } from "../../../../../utils/maths";
@@ -9,7 +9,7 @@ import EmptyMenuClient from "./EmptyMenuClient";
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Menu() {
-  const { menu, isAdminMode, handleDelete, resetMenu, handleEdit } = useContext(OrderContext)
+  const { menu, isAdminMode, handleDelete, resetMenu, setProductSelected } = useContext(OrderContext)
 
 
 
@@ -17,8 +17,10 @@ export default function Menu() {
     {isAdminMode ? <EmptyMenuAdmin onReset={resetMenu} /> : <EmptyMenuClient />}
   </div>
 
-
-
+  const handleClick = (idProductSelected) => {
+    const productSelected = menu.find((product) => product.id === idProductSelected)
+    setProductSelected(productSelected)
+  }
 
   return (
     <MenuStyled>
@@ -30,7 +32,7 @@ export default function Menu() {
           imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
           hasDeleteButton={isAdminMode}
           onDelete={() => handleDelete(id)}
-          onEdit={() => handleEdit(id)}
+          onEdit={() => handleClick(id)}
         />
       })}
     </MenuStyled>

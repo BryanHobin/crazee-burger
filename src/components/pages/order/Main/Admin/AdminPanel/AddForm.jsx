@@ -46,7 +46,7 @@ export default function AddForm() {
 
   return (
     <AddFormStyled onSubmit={handleSubmit}>
-      <ImagePreview />
+      <ImagePreview product={newProduct} />
       <div className="inputs">
         {inputTexts.map(input => (
           <TextInput
@@ -60,33 +60,6 @@ export default function AddForm() {
             version="minimalist"
           />
         ))}
-        {/*  <TextInput
-          name="title"
-          value={newProduct.title}
-          onChange={handleChange}
-          type="text"
-          placeholder="Nom du produit (ex. Super Burger)"
-          Icon={<FaHamburger />}
-          version="minimalist"
-        />
-        <TextInput
-          name="imageSource"
-          value={newProduct.imageSource}
-          onChange={handleChange}
-          type="text"
-          placeholder="Lien URL d'une image (ex. https://la-photo-de-mon-produit)"
-          Icon={<BsCameraFill />}
-          version="minimalist"
-        />
-        <TextInput
-          name="price"
-          value={newProduct.price ? newProduct.price : ""}
-          onChange={handleChange}
-          type="text"
-          placeholder="Prix"
-          Icon={<MdOutlineEuro />}
-          version="minimalist"
-        /> */}
       </div>
       <div className="submit">
         <Button

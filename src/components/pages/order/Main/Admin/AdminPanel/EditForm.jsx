@@ -2,17 +2,69 @@ import { styled } from 'styled-components';
 import HintMessage from './HintMessage';
 import { useContext } from 'react';
 import OrderContext from '../../../../../../context/OrderContext';
+import { theme } from '../../../../../../theme';
+import TextInput from '../../../../../reusable-ui/TextInput';
+import ImagePreview from './ImagePreview';
+import { getInputTextsConfig } from './getInputTextConfig';
 
 export default function EditForm() {
 
-  const { productSelected } = useContext(OrderContext)
+  const { productSelected, setProductSelected, setMenu, menu } = useContext(OrderContext)
+
+  const inputTexts = getInputTextsConfig(productSelected);
+
+  const handleChange = (event) => {
+    setProductSelected({ ...productSelected, [event.target.name]: event.target.value })
+    /* const menuCopy = [...menu]
+
+    const menuUpdated = [productSelected, ...menuCopy]
+
+    setMenu(menuUpdated) */
+  }
+
   return (
     <EditFormStyled>
       <HintMessage />
-      {productSelected && productSelected.title}
+      <ImagePreview product={productSelected} />
+      <div className="inputs">
+        {inputTexts.map(input => (
+          <TextInput
+            key={input.id}
+            name={input.name}
+            value={input.value}
+            onChange={handleChange}
+            type={input.type}
+            placeholder={input.placeholder}
+            Icon={input.Icon}
+            version="minimalist"
+          />
+        ))}
+      </div>
+      <div className="submit">
+      </div>
     </EditFormStyled>
   )
 }
-const EditFormStyled = styled.div`
+const EditFormStyled = styled.form`
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: ${theme.gridUnit}px;
   height: 100%;
+
+  
+  .inputs{
+   grid-area: 1 / 2 / 4 / 3;
+   display: grid;
+   grid-row-gap:${theme.gridUnit}px;
+
+  }
+  .submit{   
+   grid-area: 4 / 2 / 4 / 3;
+   display: grid;
+   grid-template-columns: repeat(2,minmax(200px, 1fr));
+
+   
+
+  }
 `;

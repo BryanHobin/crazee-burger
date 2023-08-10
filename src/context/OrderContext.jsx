@@ -16,5 +16,16 @@ export default createContext({
  currentTab: "",
  setCurrentTab: () => { },
 
+ handleAddProduct: () => { },
 
+ menu: [],
+ setMenu: () => { },
+
+ handleDelete: () => { },
+
+ resetMenu: () => { },
+
+
+ newProduct: [],
+ setNewProduct: () => { },
 })

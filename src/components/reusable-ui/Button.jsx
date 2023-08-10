@@ -1,16 +1,16 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 import { theme } from "../../theme";
 
-export default function PrimaryButton({ label, Icon, className }) {
+export default function Button({ label, Icon, className, version = "normal", onClick }) {
   return (
-    <PrimaryButtonStyled className={className}>
+    <ButtonStyled className={className} version={version} onClick={onClick}>
       <span>{label}</span>
-      {Icon && Icon}
-    </PrimaryButtonStyled>
+      <div className="icon">{Icon && Icon}</div>
+    </ButtonStyled>
   )
 }
 
-const PrimaryButtonStyled = styled.button`
+const ButtonStyled = styled.button`
     background-color: ${theme.colors.primary};
     width: 100%;
     display: inline-flex;
@@ -46,4 +46,29 @@ const PrimaryButtonStyled = styled.button`
       opacity: 0.6;
       cursor: not-allowed;
     }
-`;
+    
+    .icon{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    ${({ version }) => extraStyle[version]}
+`
+
+
+const extraStyleSucess = css`
+  background: ${theme.colors.success};
+  border-color: ${theme.colors.success};
+  padding: ${theme.gridUnit}px 0;
+
+  &:hover:not(:disabled){
+    border-color: ${theme.colors.success};
+    color: ${theme.colors.success};
+  }
+`
+
+const extraStyle = {
+  normal: "",
+  success: extraStyleSucess
+}

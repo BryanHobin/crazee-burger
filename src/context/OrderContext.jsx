@@ -28,4 +28,10 @@ export default createContext({
 
  newProduct: [],
  setNewProduct: () => { },
+
+
+ productSelected: [],
+ setProductSelected: () => { },
+
+ handleEdit: () => { },
 })

@@ -9,13 +9,16 @@ import EmptyMenuClient from "./EmptyMenuClient";
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Menu() {
-  const { menu, isAdminMode, handleDelete, resetMenu } = useContext(OrderContext)
+  const { menu, isAdminMode, handleDelete, resetMenu, handleEdit } = useContext(OrderContext)
 
 
 
   if (menu.length === 0) return <div>
     {isAdminMode ? <EmptyMenuAdmin onReset={resetMenu} /> : <EmptyMenuClient />}
   </div>
+
+
+
 
   return (
     <MenuStyled>
@@ -27,6 +30,7 @@ export default function Menu() {
           imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
           hasDeleteButton={isAdminMode}
           onDelete={() => handleDelete(id)}
+          onEdit={() => handleEdit(id)}
         />
       })}
     </MenuStyled>

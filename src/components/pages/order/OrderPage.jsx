@@ -18,6 +18,7 @@ export default function OrderPage() {
   const [currentTab, setCurrentTab] = useState("edit");
   const [menu, setMenu] = useState(DEFAULT_MENU)
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
 
 
   //compo
@@ -36,6 +37,11 @@ export default function OrderPage() {
     const menuUpdated = menuCopy.filter((product) => product.id !== idOfProductToDelete)
 
     setMenu(menuUpdated);
+  }
+
+  const handleEdit = (idProductSelected) => {
+    const productSelected = menu.find((product) => product.id === idProductSelected)
+    console.log(productSelected)
   }
 
   const resetMenu = () => {
@@ -59,7 +65,10 @@ export default function OrderPage() {
     handleDelete,
     resetMenu,
     newProduct,
-    setNewProduct
+    setNewProduct,
+    productSelected,
+    setProductSelected,
+    handleEdit,
   }
 
   //render

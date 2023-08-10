@@ -15,7 +15,7 @@ export default function OrderPage() {
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [isEditSelected, setIsEditSelected] = useState(false)
   const [isAddSelected, setIsAddSelected] = useState(true)
-  const [currentTab, setCurrentTab] = useState("add");
+  const [currentTab, setCurrentTab] = useState("edit");
   const [menu, setMenu] = useState(DEFAULT_MENU)
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
 

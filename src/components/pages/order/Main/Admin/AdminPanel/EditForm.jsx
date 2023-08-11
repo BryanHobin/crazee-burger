@@ -36,6 +36,8 @@ export default function EditForm() {
         ))}
       </div>
       <div className="submit">
+
+        <div className="sentence">Cliquez sur un produit pour le modifier {" "}<span className='live-update'>en temps réel</span></div>
       </div>
     </EditFormStyled>
   )
@@ -58,8 +60,18 @@ const EditFormStyled = styled.form`
    grid-area: 4 / 2 / 4 / 3;
    display: grid;
    grid-template-columns: repeat(2,minmax(200px, 1fr));
+   align-items: center;
+   position: relative;
+   top:3px;
 
-   
+   .sentence{
+    color:${theme.colors.primary};
+    font-size: ${theme.fonts.size.SM};
+    .live-update{
+      text-decoration: underline;
+    }
+   }
+  
 
   }
 `;

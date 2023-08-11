@@ -91,6 +91,10 @@ const AddFormStyled = styled.form`
    display: grid;
    grid-template-columns: repeat(2,minmax(200px, 1fr));
 
+   align-items: center;
+   position: relative;
+   top:3px;
+
    
 
   }

@@ -9,11 +9,14 @@ import EmptyMenuClient from "./EmptyMenuClient";
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Menu() {
-  const { menu, isAdminMode, handleDelete, resetMenu, productSelected, setProductSelected } = useContext(OrderContext)
+  const { menu, isAdminMode, handleDelete, resetMenu, setIsCollapsed, setCurrentTab, productSelected, setProductSelected } = useContext(OrderContext)
 
 
   const handleClick = (idProductSelected) => {
     if (!isAdminMode) return
+
+    setIsCollapsed(false)
+    setCurrentTab("edit")
     const productClickedOn = menu.find((product) => product.id === idProductSelected)
     setProductSelected(productClickedOn)
   }

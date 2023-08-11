@@ -11,10 +11,10 @@ export default function Card({
   onDelete,
   onClick,
   isHoverable,
-  isSelected,
+  isSelected
 }) {
   return (
-    <CardStyled className="produit" onClick={onClick} isHoverable={isHoverable} isSelected={isSelected}>
+    <CardStyled className="produit" onClick={onClick} $isHoverable={isHoverable} $isSelected={isSelected}>
       {hasDeleteButton && (
         <button className="delete-button" aria-label="delete-button" onClick={onDelete}>
           <TiDelete className="icon" />
@@ -120,9 +120,9 @@ const CardStyled = styled.div`
         }
       }
     }
-${({ isHoverable }) => isHoverable && hoveredStyle}
+${({ $isHoverable }) => $isHoverable && hoveredStyle}
 
-${({ isHoverable, isSelected }) => isHoverable && isSelected ? selectedStyle : {}}
+${({ $isHoverable, $isSelected }) => $isHoverable && $isSelected ? selectedStyle : {}}
 `
 
 
@@ -131,6 +131,7 @@ const hoveredStyle = css`
     background-color: ${theme.colors.primary};
     transform: scale(1.1);
     box-shadow: ${theme.shadows.orangeHighlight};
+    cursor: pointer;
 
     .title{
     color: ${theme.colors.white};

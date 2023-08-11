@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import Main from "./Main/Main";
 import { theme } from "../../../theme";
 import Navbar from "./Navbar/Navbar";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import OrderContext from "../../../context/OrderContext";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enums/product";
@@ -17,10 +17,11 @@ export default function OrderPage() {
   const [isEditSelected, setIsEditSelected] = useState(false)
   const [isAddSelected, setIsAddSelected] = useState(true)
   const [currentTab, setCurrentTab] = useState("add");
-
   const [menu, setMenu] = useState(DEFAULT_MENU)
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
+  const titleEditRef = useRef()
+
 
 
   //compo
@@ -75,6 +76,7 @@ export default function OrderPage() {
     productSelected,
     setProductSelected,
     handleEdit,
+    titleEditRef
   }
 
   //render

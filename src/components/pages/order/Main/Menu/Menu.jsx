@@ -9,19 +9,23 @@ import EmptyMenuClient from "./EmptyMenuClient";
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Menu() {
-  const { menu, isAdminMode, handleDelete, resetMenu, setProductSelected } = useContext(OrderContext)
+  const { menu, isAdminMode, handleDelete, resetMenu, productSelected, setProductSelected } = useContext(OrderContext)
 
-
-
-  if (menu.length === 0) return <div>
-    {isAdminMode ? <EmptyMenuAdmin onReset={resetMenu} /> : <EmptyMenuClient />}
-  </div>
 
   const handleClick = (idProductSelected) => {
-    const productSelected = menu.find((product) => product.id === idProductSelected)
-    setProductSelected(productSelected)
+    const productClickedOn = menu.find((product) => product.id === idProductSelected)
+    setProductSelected(productClickedOn)
   }
 
+  const checkIfProductSelected = (idProductMenu, idProductClickedOn) => {
+    return idProductMenu === idProductClickedOn ? true : false;
+  }
+
+
+  if (menu.length === 0) return (
+    <div>
+      {isAdminMode ? <EmptyMenuAdmin onReset={resetMenu} /> : <EmptyMenuClient />}
+    </div>)
   return (
     <MenuStyled>
       {menu.map(({ id, title, price, imageSource }) => {
@@ -33,6 +37,8 @@ export default function Menu() {
           hasDeleteButton={isAdminMode}
           onDelete={() => handleDelete(id)}
           onEdit={() => handleClick(id)}
+          isHoverable={isAdminMode}
+          isSelected={checkIfProductSelected(id, productSelected.id)}
         />
       })}
     </MenuStyled>

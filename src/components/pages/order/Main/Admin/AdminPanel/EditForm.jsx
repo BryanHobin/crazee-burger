@@ -5,6 +5,7 @@ import { theme } from '../../../../../../theme';
 import TextInput from '../../../../../reusable-ui/TextInput';
 import ImagePreview from './ImagePreview';
 import { getInputTextsConfig } from './getInputTextConfig';
+import EditInfoMessage from './EditInfoMessage';
 
 export default function EditForm() {
   const { productSelected, setProductSelected, handleEdit, titleEditRef } = useContext(OrderContext)
@@ -36,8 +37,7 @@ export default function EditForm() {
         ))}
       </div>
       <div className="submit">
-
-        <div className="sentence">Cliquez sur un produit pour le modifier {" "}<span className='live-update'>en temps réel</span></div>
+        <EditInfoMessage />
       </div>
     </EditFormStyled>
   )
@@ -64,13 +64,7 @@ const EditFormStyled = styled.form`
    position: relative;
    top:3px;
 
-   .sentence{
-    color:${theme.colors.primary};
-    font-size: ${theme.fonts.size.SM};
-    .live-update{
-      text-decoration: underline;
-    }
-   }
+   
   
 
   }

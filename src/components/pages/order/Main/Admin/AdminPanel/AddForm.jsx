@@ -8,6 +8,7 @@ import ImagePreview from './ImagePreview';
 import SuccessMessage from './SuccessMessage';
 import { getInputTextsConfig } from './getInputTextConfig';
 import { EMPTY_PRODUCT } from '../../../../../../enums/product';
+import Form from './Form';
 
 
 export default function AddForm() {
@@ -45,31 +46,7 @@ export default function AddForm() {
 
 
   return (
-    <AddFormStyled onSubmit={handleSubmit}>
-      <ImagePreview product={newProduct} />
-      <div className="inputs">
-        {inputTexts.map(input => (
-          <TextInput
-            key={input.id}
-            name={input.name}
-            value={input.value}
-            onChange={handleChange}
-            type={input.type}
-            placeholder={input.placeholder}
-            Icon={input.Icon}
-            version="minimalist"
-          />
-        ))}
-      </div>
-      <div className="submit">
-        <Button
-          className="submit-button"
-          label="Ajouter un nouveau produit"
-          version="success" />
-        {isSubmitted && (
-          <SuccessMessage />)}
-      </div>
-    </AddFormStyled>
+    <Form onSubmit={handleSubmit} onChange={handleChange} />
   )
 }
 const AddFormStyled = styled.form`

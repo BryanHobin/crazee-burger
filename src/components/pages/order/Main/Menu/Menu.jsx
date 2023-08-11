@@ -5,6 +5,7 @@ import { formatPrice } from "../../../../../utils/maths";
 import OrderContext from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
+import { EMPTY_PRODUCT } from "../../../../../enums/product";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
@@ -28,9 +29,12 @@ export default function Menu() {
   }
 
 
-  const handleCardDelete = (event, id) => {
-    event.stopPropagation(id)
-    handleDelete(id)
+  const handleCardDelete = (event, idOfProductToDelete) => {
+    event.stopPropagation(idOfProductToDelete)
+    handleDelete(idOfProductToDelete)
+    productSelected.id === idOfProductToDelete && setProductSelected(EMPTY_PRODUCT)
+    titleEditRef.current.focus()
+
   }
 
   if (menu.length === 0) return (

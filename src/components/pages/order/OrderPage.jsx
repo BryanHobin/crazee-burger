@@ -40,6 +40,8 @@ export default function OrderPage() {
     const menuUpdated = menuCopy.filter((product) => product.id !== idOfProductToDelete)
 
     setMenu(menuUpdated);
+
+
   }
 
   const handleEdit = (productEdited) => {

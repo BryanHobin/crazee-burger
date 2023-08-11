@@ -13,6 +13,7 @@ export default function Menu() {
 
 
   const handleClick = (idProductSelected) => {
+    if (!isAdminMode) return
     const productClickedOn = menu.find((product) => product.id === idProductSelected)
     setProductSelected(productClickedOn)
   }

@@ -10,7 +10,7 @@ const Form = React.forwardRef(({
   product,
   onSubmit,
   onChange,
-  QUELQUECHOSE
+  children
 }
   , ref) => {
 
@@ -34,7 +34,7 @@ const Form = React.forwardRef(({
         ))}
       </div>
       <div className="submit">
-        {QUELQUECHOSE}
+        {children}
       </div>
     </FormStyled>
   )
@@ -66,7 +66,9 @@ const FormStyled = styled.form`
    position: relative;
    top:3px;
 
-   
+   .submit-button{
+    height: 100%;
+   }
 
   }
 `;

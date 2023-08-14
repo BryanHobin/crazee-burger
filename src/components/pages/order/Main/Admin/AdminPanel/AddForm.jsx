@@ -1,11 +1,5 @@
-import { styled } from 'styled-components';
-import { theme } from '../../../../../../theme';
 import { useContext, useState } from 'react';
 import OrderContext from '../../../../../../context/OrderContext';
-import TextInput from '../../../../../reusable-ui/TextInput';
-import Button from '../../../../../reusable-ui/Button';
-import ImagePreview from './ImagePreview';
-import SuccessMessage from './SuccessMessage';
 import { getInputTextsConfig } from './getInputTextConfig';
 import { EMPTY_PRODUCT } from '../../../../../../enums/product';
 import Form from './Form';
@@ -46,33 +40,12 @@ export default function AddForm() {
 
 
   return (
-    <Form onSubmit={handleSubmit} onChange={handleChange} />
+    <Form
+      inputs={inputTexts}
+      product={newProduct}
+      onSubmit={handleSubmit}
+      onChange={handleChange}
+      isSubmitted={isSubmitted}
+    />
   )
 }
-const AddFormStyled = styled.form`
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: repeat(4, 1fr);
-  grid-gap: ${theme.gridUnit}px;
-  height: 100%;
-
-  
-  .inputs{
-   grid-area: 1 / 2 / 4 / 3;
-   display: grid;
-   grid-row-gap:${theme.gridUnit}px;
-
-  }
-  .submit{   
-   grid-area: 4 / 2 / 4 / 3;
-   display: grid;
-   grid-template-columns: repeat(2,minmax(200px, 1fr));
-
-   align-items: center;
-   position: relative;
-   top:3px;
-
-   
-
-  }
-`;

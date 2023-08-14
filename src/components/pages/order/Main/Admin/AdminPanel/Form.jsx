@@ -6,56 +6,43 @@ import TextInput from '../../../../../reusable-ui/TextInput';
 import Button from '../../../../../reusable-ui/Button';
 import ImagePreview from './ImagePreview';
 import SuccessMessage from './SuccessMessage';
-import { EMPTY_PRODUCT } from '../../../../../../enums/product';
-import { getInputTextsConfig } from './getInputTextConfig';
 
 
-export default function Form({ onSubmit, onChange }) {
+export default function Form({
+  inputs,
+  product,
+  onSubmit,
+  onChange,
+  isSubmitted
+}) {
 
- const { handleAddProduct, newProduct, setNewProduct } = useContext(OrderContext)
- const [isSubmitted, setIsSubmitted] = useState(false)
-
-
-
- const displaySucessMessage = () => {
-  setIsSubmitted(true)
-  setTimeout(() => {
-   setIsSubmitted(false)
-  }, 2000);
- }
-
-
-
- const inputTexts = getInputTextsConfig(newProduct);
-
-
- return (
-  <FormStyled onSubmit={onSubmit}>
-   <ImagePreview product={newProduct} />
-   <div className="inputs">
-    {inputTexts.map(input => (
-     <TextInput
-      key={input.id}
-      name={input.name}
-      value={input.value}
-      onChange={onChange}
-      type={input.type}
-      placeholder={input.placeholder}
-      Icon={input.Icon}
-      version="minimalist"
-     />
-    ))}
-   </div>
-   <div className="submit">
-    <Button
-     className="submit-button"
-     label="Ajouter un nouveau produit"
-     version="success" />
-    {isSubmitted && (
-     <SuccessMessage />)}
-   </div>
-  </FormStyled>
- )
+  return (
+    <FormStyled onSubmit={onSubmit}>
+      <ImagePreview product={product} />
+      <div className="inputs">
+        {inputs.map(input => (
+          <TextInput
+            key={input.id}
+            name={input.name}
+            value={input.value}
+            onChange={onChange}
+            type={input.type}
+            placeholder={input.placeholder}
+            Icon={input.Icon}
+            version="minimalist"
+          />
+        ))}
+      </div>
+      <div className="submit">
+        <Button
+          className="submit-button"
+          label="Ajouter un nouveau produit"
+          version="success" />
+        {isSubmitted && (
+          <SuccessMessage />)}
+      </div>
+    </FormStyled>
+  )
 }
 const FormStyled = styled.form`
   display: grid;

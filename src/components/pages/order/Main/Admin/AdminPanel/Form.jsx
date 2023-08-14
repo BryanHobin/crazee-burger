@@ -1,20 +1,18 @@
 import { styled } from 'styled-components';
 import { theme } from '../../../../../../theme';
-import { useContext, useState } from 'react';
-import OrderContext from '../../../../../../context/OrderContext';
 import TextInput from '../../../../../reusable-ui/TextInput';
-import Button from '../../../../../reusable-ui/Button';
 import ImagePreview from './ImagePreview';
-import SuccessMessage from './SuccessMessage';
+import React from 'react';
 
 
-export default function Form({
+const Form = React.forwardRef(({
   inputs,
   product,
   onSubmit,
   onChange,
-  isSubmitted
-}) {
+  QUELQUECHOSE
+}
+  , ref) => {
 
   return (
     <FormStyled onSubmit={onSubmit}>
@@ -30,20 +28,21 @@ export default function Form({
             placeholder={input.placeholder}
             Icon={input.Icon}
             version="minimalist"
+            ref={ref && input.name === "title" ? ref : null}
+
           />
         ))}
       </div>
       <div className="submit">
-        <Button
-          className="submit-button"
-          label="Ajouter un nouveau produit"
-          version="success" />
-        {isSubmitted && (
-          <SuccessMessage />)}
+        {QUELQUECHOSE}
       </div>
     </FormStyled>
   )
-}
+})
+
+export default Form;
+
+
 const FormStyled = styled.form`
   display: grid;
   grid-template-columns: 1fr 3fr;

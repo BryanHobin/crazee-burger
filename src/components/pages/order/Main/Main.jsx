@@ -34,14 +34,13 @@ const MainStyled = styled.div`
 
   border-bottom-left-radius: ${theme.borderRadius.extraRound};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
+  overflow: hidden;
 
 
   .menu-and-admin{
     position: relative;
     overflow-y: hidden;
     display: grid;
-    border-bottom-left-radius: ${theme.borderRadius.extraRound};
-    border-bottom-right-radius: ${theme.borderRadius.extraRound};
   }
   
 `;

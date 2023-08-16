@@ -30,7 +30,7 @@ const MainStyled = styled.div`
 
 
   display: grid;
-  grid-template-columns: 0% 1fr;
+  grid-template-columns: 25% 1fr;
 
   border-bottom-left-radius: ${theme.borderRadius.extraRound};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};

@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { theme } from "../../../../theme";
-import Basket from "./Basket";
+import Basket from "./Basket/Basket";
 import Menu from "./Menu/Menu";
 import Admin from "./Admin/Admin";
 import { useContext } from "react";
@@ -30,18 +30,17 @@ const MainStyled = styled.div`
 
 
   display: grid;
-  grid-template-columns: 0% 1fr;
+  grid-template-columns: 25% 1fr;
 
   border-bottom-left-radius: ${theme.borderRadius.extraRound};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
+  overflow: hidden;
 
 
   .menu-and-admin{
     position: relative;
     overflow-y: hidden;
     display: grid;
-    border-bottom-left-radius: ${theme.borderRadius.extraRound};
-    border-bottom-right-radius: ${theme.borderRadius.extraRound};
   }
   
 `;

@@ -61,6 +61,7 @@ const extraStyleSucess = css`
   background: ${theme.colors.success};
   border-color: ${theme.colors.success};
   padding: ${theme.gridUnit}px 0;
+  height: 100%;
 
   &:hover:not(:disabled){
     border-color: ${theme.colors.success};

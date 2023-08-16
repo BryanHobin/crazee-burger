@@ -33,7 +33,7 @@ const Form = React.forwardRef(({
           />
         ))}
       </div>
-      <div className="submit">
+      <div className="form-footer">
         {children}
       </div>
     </FormStyled>
@@ -57,7 +57,7 @@ const FormStyled = styled.form`
    grid-row-gap:${theme.gridUnit}px;
 
   }
-  .submit{   
+  .form-footer{   
    grid-area: 4 / 2 / 4 / 3;
    display: grid;
    grid-template-columns: repeat(2,minmax(200px, 1fr));
@@ -66,9 +66,6 @@ const FormStyled = styled.form`
    position: relative;
    top:3px;
 
-   .submit-button{
-    height: 100%;
-   }
 
   }
 `;

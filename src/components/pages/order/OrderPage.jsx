@@ -7,53 +7,24 @@ import OrderContext from "../../../context/OrderContext";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { deepClone } from "../../../utils/array";
+import { useMenu } from "../../../hooks/useMenu";
 
-const DEFAULT_MENU = fakeMenu.LARGE
 
 export default function OrderPage() {
   //state
   const [isAdminMode, setIsAdminMode] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [currentTab, setCurrentTab] = useState("add");
-  const [menu, setMenu] = useState(DEFAULT_MENU)
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
   const titleEditRef = useRef()
 
+  const { menu, handleAddProduct, handleDelete, handleEdit, resetMenu } = useMenu()
 
 
   //compo
 
-  const handleAddProduct = (nouveauProduit) => {
-    const menuCopy = deepClone(menu)
 
-    const menuUpdated = [nouveauProduit, ...menuCopy]
-
-    setMenu(menuUpdated)
-  }
-
-  const handleDelete = (idOfProductToDelete) => {
-    const menuCopy = deepClone(menu)
-
-    const menuUpdated = menuCopy.filter((product) => product.id !== idOfProductToDelete)
-
-    setMenu(menuUpdated);
-
-
-  }
-
-  const handleEdit = (productEdited) => {
-    const menuCopy = deepClone(menu)
-    const indexOfProductEdited = menu.findIndex((product) => product.id === productEdited.id)
-
-    menuCopy[indexOfProductEdited] = productEdited;
-
-    setMenu(menuCopy);
-  }
-
-  const resetMenu = () => {
-    setMenu(DEFAULT_MENU);
-  }
 
   const orderContextValue = {
     isAdminMode,
@@ -64,7 +35,6 @@ export default function OrderPage() {
     setCurrentTab,
     handleAddProduct,
     menu,
-    setMenu,
     handleDelete,
     resetMenu,
     newProduct,

@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
-import { theme } from '../../../../../../theme';
-import TextInput from '../../../../../reusable-ui/TextInput';
-import ImagePreview from './ImagePreview';
+import { theme } from '../../theme';
+import TextInput from './TextInput';
+import ImagePreview from '../pages/order/Main/Admin/AdminPanel/ImagePreview';
 import React from 'react';
 
 

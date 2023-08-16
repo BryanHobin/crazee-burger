@@ -2,9 +2,7 @@ import { useContext, useState } from 'react';
 import OrderContext from '../../../../../../context/OrderContext';
 import { getInputTextsConfig } from './getInputTextConfig';
 import { EMPTY_PRODUCT } from '../../../../../../enums/product';
-import Form from './Form';
-import SuccessMessage from './SuccessMessage';
-import Button from '../../../../../reusable-ui/Button';
+import Form from '../../../../../reusable-ui/Form';
 import SubmitButton from './SubmitButton';
 
 

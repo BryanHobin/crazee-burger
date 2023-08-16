@@ -8,6 +8,7 @@ import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { deepClone } from "../../../utils/array";
 import { useMenu } from "../../../hooks/useMenu";
+import { useBasket } from "../../../hooks/useBasket";
 
 
 export default function OrderPage() {
@@ -20,6 +21,7 @@ export default function OrderPage() {
   const titleEditRef = useRef()
 
   const { menu, handleAddProduct, handleDelete, handleEdit, resetMenu } = useMenu()
+  const { basket } = useBasket()
 
 
   //compo
@@ -42,7 +44,8 @@ export default function OrderPage() {
     productSelected,
     setProductSelected,
     handleEdit,
-    titleEditRef
+    titleEditRef,
+    basket
   }
 
   //render

@@ -24,7 +24,7 @@ const BasketStyled = styled.div`
   }
   .body{
     flex: 1;
-    //box-shadow: ${theme.shadows.strong};
+    box-shadow: ${theme.shadows.basket};
 
   }
   .footer{

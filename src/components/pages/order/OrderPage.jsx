@@ -2,28 +2,30 @@ import { styled } from "styled-components";
 import Main from "./Main/Main";
 import { theme } from "../../../theme";
 import Navbar from "./Navbar/Navbar";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import OrderContext from "../../../context/OrderContext";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
-import { EMPTY_PRODUCT } from "./Main/Admin/AdminPanel/AddForm";
+import { EMPTY_PRODUCT } from "../../../enums/product";
+import { deepClone } from "../../../utils/array";
 
 const DEFAULT_MENU = fakeMenu.LARGE
 
 export default function OrderPage() {
   //state
-  const [isAdminMode, setIsAdminMode] = useState(true)
+  const [isAdminMode, setIsAdminMode] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
-  const [isEditSelected, setIsEditSelected] = useState(false)
-  const [isAddSelected, setIsAddSelected] = useState(true)
   const [currentTab, setCurrentTab] = useState("add");
   const [menu, setMenu] = useState(DEFAULT_MENU)
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
+  const titleEditRef = useRef()
+
 
 
   //compo
 
   const handleAddProduct = (nouveauProduit) => {
-    const menuCopy = [...menu]
+    const menuCopy = deepClone(menu)
 
     const menuUpdated = [nouveauProduit, ...menuCopy]
 
@@ -31,11 +33,22 @@ export default function OrderPage() {
   }
 
   const handleDelete = (idOfProductToDelete) => {
-    const menuCopy = [...menu]
+    const menuCopy = deepClone(menu)
 
     const menuUpdated = menuCopy.filter((product) => product.id !== idOfProductToDelete)
 
     setMenu(menuUpdated);
+
+
+  }
+
+  const handleEdit = (productEdited) => {
+    const menuCopy = deepClone(menu)
+    const indexOfProductEdited = menu.findIndex((product) => product.id === productEdited.id)
+
+    menuCopy[indexOfProductEdited] = productEdited;
+
+    setMenu(menuCopy);
   }
 
   const resetMenu = () => {
@@ -47,10 +60,6 @@ export default function OrderPage() {
     setIsAdminMode,
     isCollapsed,
     setIsCollapsed,
-    isAddSelected,
-    setIsAddSelected,
-    isEditSelected,
-    setIsEditSelected,
     currentTab,
     setCurrentTab,
     handleAddProduct,
@@ -59,7 +68,11 @@ export default function OrderPage() {
     handleDelete,
     resetMenu,
     newProduct,
-    setNewProduct
+    setNewProduct,
+    productSelected,
+    setProductSelected,
+    handleEdit,
+    titleEditRef
   }
 
   //render

@@ -15,8 +15,12 @@ export default function BasketProducts({ basket }) {
 }
 
 const BasketProductsStyled = styled.div`
-overflow-y: scroll;
 flex: 1;
 display: flex;
 flex-direction: column;
+overflow-y: scroll;
+height: 85vh;
+
+
+
 `

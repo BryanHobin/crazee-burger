@@ -6,11 +6,11 @@ import { deepClone, findInArray, findIndex, removeFromArray } from "../utils/arr
 export const useBasket = () => {
  const [basket, setBasket] = useState(fakeBasket.EMPTY)
 
- const handleDeleteCard = (idOfProductToDelete) => {
+ const handleDeleteBasketCard = (idOfProductToDelete, forced = false) => {
   const basketCopy = deepClone(basket)
 
   const isProductAtOne = findInArray(idOfProductToDelete, basketCopy).quantity === 1
-  if (isProductAtOne) {
+  if (isProductAtOne || forced) {
    removeFromBasket(idOfProductToDelete, basketCopy, setBasket)
    return
   }
@@ -29,7 +29,7 @@ export const useBasket = () => {
   }
   incrementProductAlreadyInBasket(productToAdd, basketCopy, setBasket)
  }
- return { basket, handleDeleteCard, handleAddToBasket }
+ return { basket, handleDeleteBasketCard, handleAddToBasket }
 }
 
 

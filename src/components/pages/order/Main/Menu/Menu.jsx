@@ -10,7 +10,19 @@ import { findInArray } from "../../../../../utils/array";
 
 
 export default function Menu() {
-  const { menu, isAdminMode, handleDelete, resetMenu, setIsCollapsed, setCurrentTab, productSelected, setProductSelected, titleEditRef, handleAddToBasket } = useContext(OrderContext)
+  const {
+    menu,
+    isAdminMode,
+    handleDelete,
+    resetMenu,
+    setIsCollapsed,
+    setCurrentTab,
+    productSelected,
+    setProductSelected,
+    titleEditRef,
+    handleAddToBasket,
+    handleDeleteBasketCard
+  } = useContext(OrderContext)
 
 
   const handleClick = async (idProductSelected) => {
@@ -30,11 +42,11 @@ export default function Menu() {
 
 
   const handleCardDelete = (event, idOfProductToDelete) => {
+    const forceRemove = true;
     event.stopPropagation(idOfProductToDelete)
     handleDelete(idOfProductToDelete)
+    handleDeleteBasketCard(idOfProductToDelete, forceRemove)
     productSelected.id === idOfProductToDelete && setProductSelected(EMPTY_PRODUCT)
-    titleEditRef.current.focus()
-
   }
 
   const handleAddButton = (event, idProductToAdd) => {

@@ -40,7 +40,7 @@ export default createContext({
  basket: [],
  setBasket: () => { },
 
- handleDeleteCard: () => { },
+ handleDeleteBasketCard: () => { },
 
  handleAddToBasket: () => { },
 

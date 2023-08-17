@@ -7,12 +7,12 @@ import OrderContext from '../../../../../context/OrderContext';
 
 export default function BasketCard({ id, title, imageSource, price, quantity }) {
   //state
-  const { handleDeleteCard } = useContext(OrderContext)
+  const { handleDeleteBasketCard } = useContext(OrderContext)
 
   //comportements
   const handleOnDeleteButton = (event, id) => {
     event.stopPropagation()
-    handleDeleteCard(id)
+    handleDeleteBasketCard(id)
   }
 
   //affichage

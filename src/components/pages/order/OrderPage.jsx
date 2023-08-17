@@ -4,9 +4,7 @@ import { theme } from "../../../theme";
 import Navbar from "./Navbar/Navbar";
 import { useRef, useState } from "react";
 import OrderContext from "../../../context/OrderContext";
-import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enums/product";
-import { deepClone } from "../../../utils/array";
 import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
 
@@ -21,7 +19,7 @@ export default function OrderPage() {
   const titleEditRef = useRef()
 
   const { menu, handleAddProduct, handleDelete, handleEdit, resetMenu } = useMenu()
-  const { basket, handleDeleteCard } = useBasket()
+  const { basket, handleDeleteCard, handleAddToBasket } = useBasket()
 
 
   //compo
@@ -47,6 +45,7 @@ export default function OrderPage() {
     titleEditRef,
     basket,
     handleDeleteCard,
+    handleAddToBasket,
   }
 
   //render

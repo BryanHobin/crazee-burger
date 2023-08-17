@@ -136,6 +136,15 @@ export const LARGE = [
 
 export const LARGE_WEIRD = [
   {
+    id: "0",
+    imageSource: "",
+    title: "",
+    price: "",
+    quantity: 1,
+    isAvailable: true,
+    isAdvertised: false,
+  },
+  {
     id: "1",
     imageSource: "/images/fries3.png",
     title: "New York Fries",

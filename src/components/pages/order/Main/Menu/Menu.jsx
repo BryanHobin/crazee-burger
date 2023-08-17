@@ -5,12 +5,11 @@ import { formatPrice } from "../../../../../utils/maths";
 import OrderContext from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
-import { EMPTY_PRODUCT } from "../../../../../enums/product";
+import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../../enums/product";
 
-const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Menu() {
-  const { menu, isAdminMode, handleDelete, resetMenu, setIsCollapsed, setCurrentTab, productSelected, setProductSelected, titleEditRef } = useContext(OrderContext)
+  const { menu, isAdminMode, handleDelete, resetMenu, setIsCollapsed, setCurrentTab, productSelected, setProductSelected, titleEditRef, handleAddToBasket } = useContext(OrderContext)
 
 
   const handleClick = async (idProductSelected) => {
@@ -43,17 +42,18 @@ export default function Menu() {
     </div>)
   return (
     <MenuStyled>
-      {menu.map(({ id, title, price, imageSource }) => {
+      {menu.map((product) => {
         return <Card
-          key={title}
-          title={title}
-          leftDescription={formatPrice(price)}
-          imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
+          key={product.id}
+          title={product.title}
+          leftDescription={formatPrice(product.price)}
+          imageSource={product.imageSource ? product.imageSource : DEFAULT_IMAGE}
           hasDeleteButton={isAdminMode}
-          onDelete={(event) => handleCardDelete(event, id)}
-          onClick={() => handleClick(id)}
+          onDelete={(event) => handleCardDelete(event, product.id)}
+          onClick={() => handleClick(product.id)}
           isHoverable={isAdminMode}
-          isSelected={checkIfProductSelected(id, productSelected.id)}
+          isSelected={checkIfProductSelected(product.id, productSelected.id)}
+          onAdd={(e) => handleAddToBasket(e, product)}
         />
       })}
     </MenuStyled>

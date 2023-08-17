@@ -12,8 +12,6 @@ import OrderContext from "../../../../../context/OrderContext";
 export default function Basket() {
   const { basket } = useContext(OrderContext)
 
-  console.log(basket)
-  console.log(fakeBasket.EMPTY)
 
   return (
     <BasketStyled >

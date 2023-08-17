@@ -42,5 +42,6 @@ export default createContext({
 
  handleDeleteCard: () => { },
 
+ handleAddToBasket: () => { },
 
 })

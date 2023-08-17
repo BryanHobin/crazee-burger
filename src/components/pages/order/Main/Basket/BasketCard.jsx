@@ -6,24 +6,24 @@ import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
 
 export default function BasketCard({ id, title, imageSource, price, quantity }) {
- //state
- const { isAdminMode, handleDeleteCard } = useContext(OrderContext)
+  //state
+  const { isAdminMode, handleDeleteCard } = useContext(OrderContext)
 
- //comportements
+  //comportements
 
 
- //affichage
- return <BasketCardStyled>
-  <div className={isAdminMode ? "delete-button active" : "delete-button"} onClick={() => handleDeleteCard(id)}>
-   <MdDeleteForever className="icon" />
-  </div>
-  <img className="image" src={imageSource} alt={title} />
-  <div className="info">
-   <div className="title">{title}</div>
-   <div className="price">{formatPrice(price)}</div>
-  </div>
-  <div className="quantity">x {quantity}</div>
- </BasketCardStyled>
+  //affichage
+  return <BasketCardStyled>
+    <div className={isAdminMode ? "delete-button active" : "delete-button"} onClick={() => handleDeleteCard(id)}>
+      <MdDeleteForever className="icon" />
+    </div>
+    <img className="image" src={imageSource} alt={title} />
+    <div className="info">
+      <div className="title">{title ? title : "-"}</div>
+      <div className="price">{formatPrice(price)}</div>
+    </div>
+    <div className="quantity">x {quantity}</div>
+  </BasketCardStyled>
 }
 
 const BasketCardStyled = styled.div`

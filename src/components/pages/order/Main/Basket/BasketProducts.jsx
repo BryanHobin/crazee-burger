@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import BasketCard from './BasketCard';
 import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
+import { DEFAULT_IMAGE } from '../../../../../enums/product';
 
 export default function BasketProducts({ basket }) {
  //state
@@ -12,7 +13,7 @@ export default function BasketProducts({ basket }) {
  //affichage
  return <BasketProductsStyled>
   {basket.map((basketProduct) => (
-   <BasketCard key={basketProduct.id} {...basketProduct} handleDeleteCard={handleDeleteCard} />
+   <BasketCard key={basketProduct.id} {...basketProduct} imageSource={basketProduct.imageSource ? basketProduct.imageSource : DEFAULT_IMAGE} handleDeleteCard={handleDeleteCard} />
   ))}
  </BasketProductsStyled >
 }

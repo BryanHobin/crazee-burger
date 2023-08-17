@@ -28,6 +28,10 @@ export const useBasket = () => {
    const basketUpdated = [newBasketProduct, ...basketCopy]
 
    setBasket(basketUpdated)
+  } else {
+   const indexOfProductToIncrement = basketCopy.findIndex((basketProduct) => basketProduct.id === productToAdd.id)
+   basketCopy[indexOfProductToIncrement].quantity += 1
+   setBasket(basketCopy)
   }
 
 

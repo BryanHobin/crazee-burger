@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { fakeBasket } from "../fakeData/fakeBasket"
-import { deepClone } from "../utils/array"
+import { deepClone, findInArray } from "../utils/array"
 
 
 export const useBasket = () => {
- const [basket, setBasket] = useState(fakeBasket.LARGE_WEIRD)
+ const [basket, setBasket] = useState(fakeBasket.EMPTY)
 
  const handleDeleteCard = (idOfProductToDelete) => {
   const basketCopy = deepClone(basket)
@@ -14,19 +14,23 @@ export const useBasket = () => {
   setBasket(basketUpdated);
  }
 
- const handleAddToBasket = (event, title, price, imageSource, quantity) => {
-  event.stopPropagation();
-  const productToAdd = {
-   title,
-   imageSource,
-   price,
-   quantity,
-  }
+ const handleAddToBasket = (productToAdd) => {
   const basketCopy = deepClone(basket)
 
-  const basketUpdated = [productToAdd, ...basketCopy]
+  const isProductAlreadyInBasket = findInArray(productToAdd.id, basketCopy) !== undefined
 
-  setBasket(basketUpdated)
+  if (!isProductAlreadyInBasket) {
+   const newBasketProduct = {
+    ...productToAdd,
+    quantity: 1,
+   }
+
+   const basketUpdated = [newBasketProduct, ...basketCopy]
+
+   setBasket(basketUpdated)
+  }
+
+
  }
 
  return { basket, handleDeleteCard, handleAddToBasket }

@@ -6,6 +6,7 @@ import OrderContext from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../../enums/product";
+import { findInArray } from "../../../../../utils/array";
 
 
 export default function Menu() {
@@ -17,7 +18,7 @@ export default function Menu() {
 
     await setIsCollapsed(false)
     await setCurrentTab("edit")
-    const productClickedOn = menu.find((product) => product.id === idProductSelected)
+    const productClickedOn = findInArray(idProductSelected, menu)
     await setProductSelected(productClickedOn)
 
     titleEditRef.current.focus()
@@ -36,24 +37,30 @@ export default function Menu() {
 
   }
 
+  const handleAddButton = (event, idProductToAdd) => {
+    event.stopPropagation()
+    const productToAdd = findInArray(idProductToAdd, menu)
+    handleAddToBasket(productToAdd)
+  }
+
   if (menu.length === 0) return (
     <div>
       {isAdminMode ? <EmptyMenuAdmin onReset={resetMenu} /> : <EmptyMenuClient />}
     </div>)
   return (
     <MenuStyled>
-      {menu.map((product) => {
+      {menu.map(({ id, title, imageSource, price }) => {
         return <Card
-          key={product.id}
-          title={product.title}
-          leftDescription={formatPrice(product.price)}
-          imageSource={product.imageSource ? product.imageSource : DEFAULT_IMAGE}
+          key={id}
+          title={title}
+          leftDescription={formatPrice(price)}
+          imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
           hasDeleteButton={isAdminMode}
-          onDelete={(event) => handleCardDelete(event, product.id)}
-          onClick={() => handleClick(product.id)}
+          onDelete={(event) => handleCardDelete(event, id)}
+          onClick={() => handleClick(id)}
           isHoverable={isAdminMode}
-          isSelected={checkIfProductSelected(product.id, productSelected.id)}
-          onAdd={(e) => handleAddToBasket(e, product)}
+          isSelected={checkIfProductSelected(id, productSelected.id)}
+          onAdd={(event) => handleAddButton(event, id)}
         />
       })}
     </MenuStyled>

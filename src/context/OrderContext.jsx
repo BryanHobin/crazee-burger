@@ -36,4 +36,12 @@ export default createContext({
  handleEdit: () => { },
 
  titleEditRef: {},
+
+ basket: [],
+ setBasket: () => { },
+
+ handleDeleteBasketCard: () => { },
+
+ handleAddToBasket: () => { },
+
 })

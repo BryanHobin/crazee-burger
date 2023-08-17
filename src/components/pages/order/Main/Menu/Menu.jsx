@@ -5,12 +5,24 @@ import { formatPrice } from "../../../../../utils/maths";
 import OrderContext from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
-import { EMPTY_PRODUCT } from "../../../../../enums/product";
+import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../../enums/product";
+import { findInArray } from "../../../../../utils/array";
 
-const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Menu() {
-  const { menu, isAdminMode, handleDelete, resetMenu, setIsCollapsed, setCurrentTab, productSelected, setProductSelected, titleEditRef } = useContext(OrderContext)
+  const {
+    menu,
+    isAdminMode,
+    handleDelete,
+    resetMenu,
+    setIsCollapsed,
+    setCurrentTab,
+    productSelected,
+    setProductSelected,
+    titleEditRef,
+    handleAddToBasket,
+    handleDeleteBasketCard
+  } = useContext(OrderContext)
 
 
   const handleClick = async (idProductSelected) => {
@@ -18,7 +30,7 @@ export default function Menu() {
 
     await setIsCollapsed(false)
     await setCurrentTab("edit")
-    const productClickedOn = menu.find((product) => product.id === idProductSelected)
+    const productClickedOn = findInArray(idProductSelected, menu)
     await setProductSelected(productClickedOn)
 
     titleEditRef.current.focus()
@@ -30,11 +42,17 @@ export default function Menu() {
 
 
   const handleCardDelete = (event, idOfProductToDelete) => {
+    const forceRemove = true;
     event.stopPropagation(idOfProductToDelete)
     handleDelete(idOfProductToDelete)
+    handleDeleteBasketCard(idOfProductToDelete, forceRemove)
     productSelected.id === idOfProductToDelete && setProductSelected(EMPTY_PRODUCT)
-    titleEditRef.current.focus()
+  }
 
+  const handleAddButton = (event, idProductToAdd) => {
+    event.stopPropagation()
+    const productToAdd = findInArray(idProductToAdd, menu)
+    handleAddToBasket(productToAdd)
   }
 
   if (menu.length === 0) return (
@@ -43,9 +61,9 @@ export default function Menu() {
     </div>)
   return (
     <MenuStyled>
-      {menu.map(({ id, title, price, imageSource }) => {
+      {menu.map(({ id, title, imageSource, price }) => {
         return <Card
-          key={title}
+          key={id}
           title={title}
           leftDescription={formatPrice(price)}
           imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
@@ -54,6 +72,7 @@ export default function Menu() {
           onClick={() => handleClick(id)}
           isHoverable={isAdminMode}
           isSelected={checkIfProductSelected(id, productSelected.id)}
+          onAdd={(event) => handleAddButton(event, id)}
         />
       })}
     </MenuStyled>

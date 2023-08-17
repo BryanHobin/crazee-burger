@@ -3,16 +3,16 @@ import { theme } from "../../../../../theme";
 import Header from "../../../../reusable-ui/Header";
 
 export default function Footer() {
- return (
-  <Header>
-   <FooterStyled>
-    <span>
-     Codé avec ❤️ et React.JS
-    </span>
-   </FooterStyled>
-  </Header>
+  return (
+    <Header className={"footer"}>
+      <FooterStyled>
+        <span>
+          Codé avec ❤️ et React.JS
+        </span>
+      </FooterStyled>
+    </Header>
 
- )
+  )
 }
 
 const FooterStyled = styled.div`

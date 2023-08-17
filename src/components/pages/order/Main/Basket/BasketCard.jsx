@@ -5,7 +5,7 @@ import { MdDeleteForever } from "react-icons/md"
 import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
 
-export default function BasketCard({ id, title, imageSource, price, quantity }) {
+export default function BasketCard({ id, title, imageSource, price, quantity, isClickable }) {
   //state
   const { handleDeleteBasketCard } = useContext(OrderContext)
 
@@ -16,8 +16,8 @@ export default function BasketCard({ id, title, imageSource, price, quantity }) 
   }
 
   //affichage
-  return <BasketCardStyled>
-    <div className={"delete-button"} onClick={(event) => handleOnDeleteButton(event, id)}>
+  return <BasketCardStyled $isClickable={isClickable}>
+    <div className={"delete-button"} onClick={(event) => handleOnDeleteButton(event, id)} >
       <MdDeleteForever className="icon" />
     </div>
     <img className="image" src={imageSource} alt={title} />
@@ -30,6 +30,7 @@ export default function BasketCard({ id, title, imageSource, price, quantity }) 
 }
 
 const BasketCardStyled = styled.div`
+cursor :${({ $isClickable }) => $isClickable ? "pointer" : "auto"};
 margin: 10px 16px;
 height: 86px;
 display: grid;

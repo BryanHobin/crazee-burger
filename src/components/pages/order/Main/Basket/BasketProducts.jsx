@@ -8,12 +8,12 @@ export default function BasketProducts({ basket }) {
  //state
 
  //comportements
- const { handleDeleteCard } = useContext(OrderContext)
+ const { isAdminMode, handleDeleteCard } = useContext(OrderContext)
 
  //affichage
  return <BasketProductsStyled>
   {basket.map((basketProduct) => (
-   <BasketCard key={basketProduct.id} {...basketProduct} imageSource={basketProduct.imageSource ? basketProduct.imageSource : DEFAULT_IMAGE} handleDeleteCard={handleDeleteCard} />
+   <BasketCard key={basketProduct.id} {...basketProduct} imageSource={basketProduct.imageSource ? basketProduct.imageSource : DEFAULT_IMAGE} handleDeleteCard={handleDeleteCard} isClickable={isAdminMode} />
   ))}
  </BasketProductsStyled >
 }

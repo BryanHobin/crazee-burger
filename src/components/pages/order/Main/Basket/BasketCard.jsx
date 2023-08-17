@@ -7,14 +7,14 @@ import OrderContext from '../../../../../context/OrderContext';
 
 export default function BasketCard({ id, title, imageSource, price, quantity }) {
   //state
-  const { isAdminMode, handleDeleteCard } = useContext(OrderContext)
+  const { handleDeleteCard } = useContext(OrderContext)
 
   //comportements
 
 
   //affichage
   return <BasketCardStyled>
-    <div className={isAdminMode ? "delete-button active" : "delete-button"} onClick={() => handleDeleteCard(id)}>
+    <div className={"delete-button"} onClick={() => handleDeleteCard(id)}>
       <MdDeleteForever className="icon" />
     </div>
     <img className="image" src={imageSource} alt={title} />
@@ -52,25 +52,30 @@ position: relative;
  z-index: 1;
  transition: all .3s ease-in-out;
  cursor: pointer;
-
- &.active{
- position: absolute;
- right: 0;
- width: 25%;
- background-color: ${theme.colors.redSecondary};
- height: 100%;
- display: flex;
- justify-content: center;
- align-items: center;
- color: ${theme.colors.white};
- border-top-right-radius: ${theme.borderRadius.round};
- border-bottom-right-radius: ${theme.borderRadius.round};
- 
- &:hover{
-  background-color: ${theme.colors.red};
- }
- }
 }
+
+&:hover {
+  .delete-button{
+  position: absolute;
+  right: 0;
+  width: 25%;
+  background-color: ${theme.colors.redSecondary};
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:${theme.fonts.size.P3};
+  color: ${theme.colors.white};
+  border-top-right-radius: ${theme.borderRadius.round};
+  border-bottom-right-radius: ${theme.borderRadius.round};
+
+  &:hover{
+  background-color: ${theme.colors.red};
+  }
+  }
+}
+
+
 
 .image{
  grid-area: 1 / 1 / 3 / 1;
@@ -111,6 +116,5 @@ position: relative;
 
 }
 
-
-
 `
+

@@ -7,13 +7,14 @@ import OrderContext from '../../../../../context/OrderContext';
 
 export default function BasketCard({ id, title, imageSource, price, quantity }) {
  //state
- const { isAdminMode } = useContext(OrderContext)
+ const { isAdminMode, handleDeleteCard } = useContext(OrderContext)
 
  //comportements
 
+
  //affichage
  return <BasketCardStyled>
-  <div className={isAdminMode ? "delete-button active" : "delete-button"}>
+  <div className={isAdminMode ? "delete-button active" : "delete-button"} onClick={() => handleDeleteCard(id)}>
    <MdDeleteForever className="icon" />
   </div>
   <img className="image" src={imageSource} alt={title} />

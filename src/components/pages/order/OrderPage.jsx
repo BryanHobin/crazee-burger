@@ -21,7 +21,7 @@ export default function OrderPage() {
   const titleEditRef = useRef()
 
   const { menu, handleAddProduct, handleDelete, handleEdit, resetMenu } = useMenu()
-  const { basket } = useBasket()
+  const { basket, handleDeleteCard } = useBasket()
 
 
   //compo
@@ -45,7 +45,8 @@ export default function OrderPage() {
     setProductSelected,
     handleEdit,
     titleEditRef,
-    basket
+    basket,
+    handleDeleteCard,
   }
 
   //render

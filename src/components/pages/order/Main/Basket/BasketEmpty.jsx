@@ -15,6 +15,7 @@ const BasketEmptyStyled = styled.span`
  justify-content: center;
  align-items: center;
  height: 100%;
+ flex: 1;
  font-family: "Amatic SC", cursive;
  color: ${theme.colors.greyBlue};
  font-size: ${theme.fonts.size.P4};

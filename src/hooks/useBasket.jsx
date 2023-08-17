@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { fakeBasket } from "../fakeData/fakeBasket"
-import { deepClone, findInArray } from "../utils/array"
+import { deepClone, findInArray, findIndex } from "../utils/array"
 
 
 export const useBasket = () => {
@@ -20,22 +20,28 @@ export const useBasket = () => {
   const isProductAlreadyInBasket = findInArray(productToAdd.id, basketCopy) !== undefined
 
   if (!isProductAlreadyInBasket) {
-   const newBasketProduct = {
-    ...productToAdd,
-    quantity: 1,
-   }
-
-   const basketUpdated = [newBasketProduct, ...basketCopy]
-
-   setBasket(basketUpdated)
-  } else {
-   const indexOfProductToIncrement = basketCopy.findIndex((basketProduct) => basketProduct.id === productToAdd.id)
-   basketCopy[indexOfProductToIncrement].quantity += 1
-   setBasket(basketCopy)
+   AddProductToBasket(productToAdd, basketCopy, setBasket)
+   return
   }
-
-
+  incrementProductAlreadyInBasket(productToAdd, basketCopy, setBasket)
  }
-
  return { basket, handleDeleteCard, handleAddToBasket }
 }
+
+
+
+const AddProductToBasket = (productToAdd, basketCopy, setBasket) => {
+ const newBasketProduct = {
+  ...productToAdd,
+  quantity: 1,
+ }
+ const basketUpdated = [newBasketProduct, ...basketCopy]
+ setBasket(basketUpdated)
+}
+
+const incrementProductAlreadyInBasket = (productToAdd, basketCopy, setBasket) => {
+ const indexOfProductToIncrement = findIndex(productToAdd.id, basketCopy)
+ basketCopy[indexOfProductToIncrement].quantity += 1
+ setBasket(basketCopy)
+}
+

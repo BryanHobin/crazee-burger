@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { deepClone, findIndex } from "../utils/array"
+import { deepClone, findIndex, removeFromArray } from "../utils/array"
 import { fakeMenu } from "../fakeData/fakeMenu"
 
 const DEFAULT_MENU = fakeMenu.LARGE
@@ -21,7 +21,7 @@ export const useMenu = () => {
  const handleDelete = (idOfProductToDelete) => {
   const menuCopy = deepClone(menu)
 
-  const menuUpdated = menuCopy.filter((product) => product.id !== idOfProductToDelete)
+  const menuUpdated = removeFromArray(idOfProductToDelete, menuCopy)
 
   setMenu(menuUpdated);
 

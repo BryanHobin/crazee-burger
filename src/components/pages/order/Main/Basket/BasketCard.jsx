@@ -10,11 +10,14 @@ export default function BasketCard({ id, title, imageSource, price, quantity }) 
   const { handleDeleteCard } = useContext(OrderContext)
 
   //comportements
-
+  const handleOnDeleteButton = (event, id) => {
+    event.stopPropagation()
+    handleDeleteCard(id)
+  }
 
   //affichage
   return <BasketCardStyled>
-    <div className={"delete-button"} onClick={() => handleDeleteCard(id)}>
+    <div className={"delete-button"} onClick={(event) => handleOnDeleteButton(event, id)}>
       <MdDeleteForever className="icon" />
     </div>
     <img className="image" src={imageSource} alt={title} />

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { fakeBasket } from "../fakeData/fakeBasket"
-import { deepClone, findInArray, findIndex } from "../utils/array"
+import { deepClone, findInArray, findIndex, removeFromArray } from "../utils/array"
 
 
 export const useBasket = () => {
@@ -9,9 +9,13 @@ export const useBasket = () => {
  const handleDeleteCard = (idOfProductToDelete) => {
   const basketCopy = deepClone(basket)
 
-  const basketUpdated = basketCopy.filter((product) => product.id !== idOfProductToDelete)
-
-  setBasket(basketUpdated);
+  const isProductAtOne = findInArray(idOfProductToDelete, basketCopy).quantity === 1
+  if (isProductAtOne) {
+   removeFromBasket(idOfProductToDelete, basketCopy, setBasket)
+   return
+  }
+  const indexOfProductToIncrement = findIndex(idOfProductToDelete, basketCopy)
+  decrementProductAlreadyInBasket(basketCopy, indexOfProductToIncrement, setBasket)
  }
 
  const handleAddToBasket = (productToAdd) => {
@@ -20,7 +24,7 @@ export const useBasket = () => {
   const isProductAlreadyInBasket = findInArray(productToAdd.id, basketCopy) !== undefined
 
   if (!isProductAlreadyInBasket) {
-   AddProductToBasket(productToAdd, basketCopy, setBasket)
+   addProductToBasket(productToAdd, basketCopy, setBasket)
    return
   }
   incrementProductAlreadyInBasket(productToAdd, basketCopy, setBasket)
@@ -30,7 +34,7 @@ export const useBasket = () => {
 
 
 
-const AddProductToBasket = (productToAdd, basketCopy, setBasket) => {
+const addProductToBasket = (productToAdd, basketCopy, setBasket) => {
  const newBasketProduct = {
   ...productToAdd,
   quantity: 1,
@@ -43,5 +47,15 @@ const incrementProductAlreadyInBasket = (productToAdd, basketCopy, setBasket) =>
  const indexOfProductToIncrement = findIndex(productToAdd.id, basketCopy)
  basketCopy[indexOfProductToIncrement].quantity += 1
  setBasket(basketCopy)
+}
+
+function decrementProductAlreadyInBasket(basketCopy, indexOfProductToIncrement, setBasket) {
+ basketCopy[indexOfProductToIncrement].quantity -= 1
+ setBasket(basketCopy)
+}
+
+function removeFromBasket(idOfProductToDelete, basketCopy, setBasket) {
+ const basketUpdated = removeFromArray(idOfProductToDelete, basketCopy)
+ setBasket(basketUpdated)
 }
 

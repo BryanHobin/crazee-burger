@@ -3,18 +3,26 @@ import BasketCard from './BasketCard';
 import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
 import { DEFAULT_IMAGE } from '../../../../../enums/product';
+import { findInArray } from '../../../../../utils/array';
 
-export default function BasketProducts({ basket }) {
+export default function BasketProducts() {
  //state
 
  //comportements
- const { isAdminMode, handleDeleteCard } = useContext(OrderContext)
+ const { basket, menu, isAdminMode, handleDeleteBasketCard } = useContext(OrderContext)
+ const handleOnDeleteButton = (event, id) => {
+  event.stopPropagation()
+  handleDeleteBasketCard(id)
+ }
 
  //affichage
  return <BasketProductsStyled>
-  {basket.map((basketProduct) => (
-   <BasketCard key={basketProduct.id} {...basketProduct} imageSource={basketProduct.imageSource ? basketProduct.imageSource : DEFAULT_IMAGE} handleDeleteCard={handleDeleteCard} isClickable={isAdminMode} />
-  ))}
+  {basket.map((basketProduct) => {
+   const menuProduct = findInArray(basketProduct.id, menu)
+   return (
+    <BasketCard key={menuProduct.id} {...menuProduct} imageSource={menuProduct.imageSource ? menuProduct.imageSource : DEFAULT_IMAGE} quantity={basketProduct.quantity} isClickable={isAdminMode} onDelete={(event) => handleOnDeleteButton(event, menuProduct.id)} />
+   )
+  })}
  </BasketProductsStyled >
 }
 

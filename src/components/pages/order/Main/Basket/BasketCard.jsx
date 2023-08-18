@@ -1,16 +1,16 @@
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 import { formatPrice } from '../../../../../utils/maths';
 import { theme } from '../../../../../theme';
 import { MdDeleteForever } from "react-icons/md"
 
-export default function BasketCard({ title, imageSource, price, quantity, isClickable, onDelete, onClick }) {
+export default function BasketCard({ title, imageSource, price, quantity, isClickable, onDelete, onClick, isSelected }) {
   //state
 
   //comportements
 
 
   //affichage
-  return <BasketCardStyled $isClickable={isClickable} onClick={onClick}>
+  return <BasketCardStyled $isClickable={isClickable} onClick={onClick} $isSelected={isSelected}>
     <div className={"delete-button"} onClick={onDelete} >
       <MdDeleteForever className="icon" />
     </div>
@@ -37,82 +37,96 @@ padding: ${theme.gridUnit}px ${theme.gridUnit * 3}px;
 box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
 position: relative;
 
-&:first-child{
- margin-top: 20px;
-}
-&:last-child{
- margin-bottom: 20px;
-}
+  &:first-child{
+  margin-top: 20px;
+  }
+  &:last-child{
+  margin-bottom: 20px;
+  }
 
 
-.delete-button{
- display: none;
- z-index: 1;
- transition: all .3s ease-in-out;
- cursor: pointer;
-}
-
-&:hover {
   .delete-button{
-  position: absolute;
-  right: 0;
-  width: 25%;
-  background-color: ${theme.colors.redSecondary};
+  display: none;
+  z-index: 1;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+  }
+
+  &:hover {
+    .delete-button{
+    position: absolute;
+    right: 0;
+    width: 25%;
+    background-color: ${theme.colors.redSecondary};
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:${theme.fonts.size.P3};
+    color: ${theme.colors.white};
+    border-top-right-radius: ${theme.borderRadius.round};
+    border-bottom-right-radius: ${theme.borderRadius.round};
+
+    &:hover{
+    background-color: ${theme.colors.red};
+    }
+    }
+  }
+
+
+
+  .image{
+  grid-area: 1 / 1 / 3 / 1;
+  object-fit: contain;
+  object-position: center;
+  width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
+  }
+  .info{
+  display: grid;
+  grid-template-rows:1fr 1fr;
   align-items: center;
-  font-size:${theme.fonts.size.P3};
-  color: ${theme.colors.white};
-  border-top-right-radius: ${theme.borderRadius.round};
-  border-bottom-right-radius: ${theme.borderRadius.round};
+  height: 100%;
+  width: 100%;
+  margin-left: 10px;
 
-  &:hover{
-  background-color: ${theme.colors.red};
+  .title{
+    grid-area: 1 / 1 / 2 / 3;
+    font-family: "Amatic SC", cursive;
+    font-size: ${theme.fonts.size.P3};
+    font-weight: ${theme.fonts.weights.bold};
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    
+  }
+  .price{
+    grid-area: 2 / 1 / 3 / 3;
+    color:${theme.colors.primary};
+
   }
   }
-}
-
-
-
-.image{
- grid-area: 1 / 1 / 3 / 1;
- object-fit: contain;
- object-position: center;
- width: 100%;
- height: 100%;
-}
-.info{
- display: grid;
- grid-template-rows:1fr 1fr;
- align-items: center;
- height: 100%;
- width: 100%;
- margin-left: 10px;
-
- .title{
-  grid-area: 1 / 1 / 2 / 3;
-  font-family: "Amatic SC", cursive;
-  font-size: ${theme.fonts.size.P3};
-  font-weight: ${theme.fonts.weights.bold};
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  display: block;
-  
- }
- .price{
-  grid-area: 2 / 1 / 3 / 3;
+  .quantity{
+  grid-area: 1 / 3 / 3 / 4;
   color:${theme.colors.primary};
-
-}
-}
-.quantity{
- grid-area: 1 / 3 / 3 / 4;
- color:${theme.colors.primary};
- text-align: center;
-
-}
-
+  text-align: center;
+  }
+${({ $isSelected, $isClickable }) => $isSelected && $isClickable ? selectedStyle : null}
 `
 
+const selectedStyle = css`
+    background-color: ${theme.colors.primary};
+    .info{
+      .title{
+      color: ${theme.colors.white};
+    }
+      .price{
+        color: ${theme.colors.white};
+      }
+    }
+    .quantity{
+        color: ${theme.colors.white};
+      }
+    
+`

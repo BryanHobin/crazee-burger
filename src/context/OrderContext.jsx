@@ -44,6 +44,10 @@ export default createContext({
 
  handleAddToBasket: () => { },
 
- handleProductSelected: () => { }
+ handleProductSelected: () => { },
+
+ checkIfProductSelected: () => { }
+
+
 
 })

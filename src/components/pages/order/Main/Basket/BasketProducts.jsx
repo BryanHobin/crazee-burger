@@ -9,15 +9,12 @@ export default function BasketProducts() {
  //state
 
  //comportements
- const { basket, menu, isAdminMode, handleDeleteBasketCard, handleProductSelected, productSelected } = useContext(OrderContext)
+ const { basket, menu, isAdminMode, handleDeleteBasketCard, handleProductSelected, productSelected, checkIfProductSelected } = useContext(OrderContext)
  const handleOnDeleteButton = (event, id) => {
   event.stopPropagation()
   handleDeleteBasketCard(id)
  }
 
- const checkIfProductSelected = (idProductMenu, idProductClickedOn) => {
-  return idProductMenu === idProductClickedOn ? true : false;
- }
 
 
  //affichage

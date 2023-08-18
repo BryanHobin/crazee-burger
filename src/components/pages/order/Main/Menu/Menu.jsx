@@ -19,12 +19,11 @@ export default function Menu() {
     handleAddToBasket,
     handleDeleteBasketCard,
     handleProductSelected,
+    checkIfProductSelected
   } = useContext(OrderContext)
 
 
-  const checkIfProductSelected = (idProductMenu, idProductClickedOn) => {
-    return idProductMenu === idProductClickedOn ? true : false;
-  }
+
 
 
   const handleCardDelete = (event, idOfProductToDelete) => {

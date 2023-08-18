@@ -7,6 +7,7 @@ import OrderContext from "../../../context/OrderContext";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
+import { findInArray } from "../../../utils/array";
 
 
 export default function OrderPage() {
@@ -23,7 +24,14 @@ export default function OrderPage() {
 
 
   //compo
+  const handleProductSelected = async (idProductSelected) => {
+    const productClickedOn = findInArray(idProductSelected, menu)
+    await setIsCollapsed(false)
+    await setCurrentTab("edit")
+    await setProductSelected(productClickedOn)
 
+    titleEditRef.current.focus()
+  }
 
 
   const orderContextValue = {
@@ -46,6 +54,7 @@ export default function OrderPage() {
     basket,
     handleDeleteBasketCard,
     handleAddToBasket,
+    handleProductSelected,
   }
 
   //render

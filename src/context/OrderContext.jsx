@@ -44,4 +44,6 @@ export default createContext({
 
  handleAddToBasket: () => { },
 
+ handleProductSelected: () => { }
+
 })

@@ -6,7 +6,6 @@ import OrderContext from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../../enums/product";
-import { findInArray } from "../../../../../utils/array";
 
 
 export default function Menu() {
@@ -15,26 +14,13 @@ export default function Menu() {
     isAdminMode,
     handleDelete,
     resetMenu,
-    setIsCollapsed,
-    setCurrentTab,
     productSelected,
     setProductSelected,
-    titleEditRef,
     handleAddToBasket,
-    handleDeleteBasketCard
+    handleDeleteBasketCard,
+    handleProductSelected,
   } = useContext(OrderContext)
 
-
-  const handleClick = async (idProductSelected) => {
-    if (!isAdminMode) return
-
-    await setIsCollapsed(false)
-    await setCurrentTab("edit")
-    const productClickedOn = findInArray(idProductSelected, menu)
-    await setProductSelected(productClickedOn)
-
-    titleEditRef.current.focus()
-  }
 
   const checkIfProductSelected = (idProductMenu, idProductClickedOn) => {
     return idProductMenu === idProductClickedOn ? true : false;
@@ -68,7 +54,7 @@ export default function Menu() {
           imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
           hasDeleteButton={isAdminMode}
           onDelete={(event) => handleCardDelete(event, id)}
-          onClick={() => handleClick(id)}
+          onClick={isAdminMode ? () => handleProductSelected(id) : null}
           isHoverable={isAdminMode}
           isSelected={checkIfProductSelected(id, productSelected.id)}
           onAdd={(event) => handleAddButton(event, id)}

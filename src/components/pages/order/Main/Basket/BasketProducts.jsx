@@ -9,18 +9,27 @@ export default function BasketProducts() {
  //state
 
  //comportements
- const { basket, menu, isAdminMode, handleDeleteBasketCard } = useContext(OrderContext)
+ const { basket, menu, isAdminMode, handleDeleteBasketCard, handleProductSelected } = useContext(OrderContext)
  const handleOnDeleteButton = (event, id) => {
   event.stopPropagation()
   handleDeleteBasketCard(id)
  }
+
 
  //affichage
  return <BasketProductsStyled>
   {basket.map((basketProduct) => {
    const menuProduct = findInArray(basketProduct.id, menu)
    return (
-    <BasketCard key={menuProduct.id} {...menuProduct} imageSource={menuProduct.imageSource ? menuProduct.imageSource : DEFAULT_IMAGE} quantity={basketProduct.quantity} isClickable={isAdminMode} onDelete={(event) => handleOnDeleteButton(event, menuProduct.id)} />
+    <BasketCard
+     key={menuProduct.id}
+     {...menuProduct}
+     imageSource={menuProduct.imageSource ? menuProduct.imageSource : DEFAULT_IMAGE}
+     quantity={basketProduct.quantity}
+     isClickable={isAdminMode}
+     onDelete={(event) => handleOnDeleteButton(event, menuProduct.id)}
+     onClick={isAdminMode ? () => handleProductSelected(menuProduct.id) : null}
+    />
    )
   })}
  </BasketProductsStyled >

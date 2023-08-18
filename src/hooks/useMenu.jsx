@@ -41,5 +41,9 @@ export const useMenu = () => {
   setMenu(DEFAULT_MENU);
  }
 
- return { menu, setMenu, handleAddProduct, handleDelete, handleEdit, resetMenu }
+ const checkIfProductSelected = (idProductMenu, idProductClickedOn) => {
+  return idProductMenu === idProductClickedOn ? true : false;
+ }
+
+ return { menu, setMenu, handleAddProduct, handleDelete, handleEdit, resetMenu, checkIfProductSelected }
 }

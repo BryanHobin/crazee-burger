@@ -1,10 +1,9 @@
 import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
 import Total from "./Total";
-import { formatPrice } from "../../../../../utils/maths";
+import { calculateTotalToPay, formatPrice } from "../../../../../utils/maths";
 import Footer from "./Footer";
 import BasketProducts from "./BasketProducts";
-import { fakeBasket } from "../../../../../fakeData/fakeBasket";
 import BasketEmpty from "./BasketEmpty";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
@@ -14,15 +13,11 @@ export default function Basket() {
 
   const isBasketEmpty = basket.length === 0
 
-  const totalToPay = basket.reduce((total, basketProduct) => {
-    if (isNaN(basketProduct.price)) return total
-    return total + basketProduct.quantity * basketProduct.price
-  }, 0)
 
   return (
     <BasketStyled >
-      <Total amountToPay={formatPrice(totalToPay)} />
-      {isBasketEmpty ? <BasketEmpty /> : <BasketProducts basket={basket} />}
+      <Total />
+      {isBasketEmpty ? <BasketEmpty /> : <BasketProducts />}
       <Footer />
     </BasketStyled>
   )
@@ -45,3 +40,5 @@ const BasketStyled = styled.div`
     bottom:0;
   }
 `;
+
+

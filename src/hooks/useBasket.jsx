@@ -18,33 +18,33 @@ export const useBasket = () => {
   decrementProductAlreadyInBasket(basketCopy, indexOfProductToIncrement, setBasket)
  }
 
- const handleAddToBasket = (productToAdd) => {
+ const handleAddToBasket = (idProductToAdd) => {
   const basketCopy = deepClone(basket)
 
-  const isProductAlreadyInBasket = findInArray(productToAdd.id, basketCopy) !== undefined
+  const isProductAlreadyInBasket = findInArray(idProductToAdd, basketCopy) !== undefined
 
   if (!isProductAlreadyInBasket) {
-   addProductToBasket(productToAdd, basketCopy, setBasket)
+   addProductToBasket(idProductToAdd, basketCopy, setBasket)
    return
   }
-  incrementProductAlreadyInBasket(productToAdd, basketCopy, setBasket)
+  incrementProductAlreadyInBasket(idProductToAdd, basketCopy, setBasket)
  }
  return { basket, handleDeleteBasketCard, handleAddToBasket }
 }
 
 
 
-const addProductToBasket = (productToAdd, basketCopy, setBasket) => {
+const addProductToBasket = (idProductToAdd, basketCopy, setBasket) => {
  const newBasketProduct = {
-  ...productToAdd,
+  id: idProductToAdd,
   quantity: 1,
  }
  const basketUpdated = [newBasketProduct, ...basketCopy]
  setBasket(basketUpdated)
 }
 
-const incrementProductAlreadyInBasket = (productToAdd, basketCopy, setBasket) => {
- const indexOfProductToIncrement = findIndex(productToAdd.id, basketCopy)
+const incrementProductAlreadyInBasket = (idProductToAdd, basketCopy, setBasket) => {
+ const indexOfProductToIncrement = findIndex(idProductToAdd, basketCopy)
  basketCopy[indexOfProductToIncrement].quantity += 1
  setBasket(basketCopy)
 }

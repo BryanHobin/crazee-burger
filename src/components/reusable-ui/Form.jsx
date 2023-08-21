@@ -10,6 +10,8 @@ const Form = React.forwardRef(({
   product,
   onSubmit,
   onChange,
+  onFocus,
+  onBlur,
   children
 }
   , ref) => {
@@ -24,6 +26,8 @@ const Form = React.forwardRef(({
             name={input.name}
             value={input.value}
             onChange={onChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
             type={input.type}
             placeholder={input.placeholder}
             Icon={input.Icon}

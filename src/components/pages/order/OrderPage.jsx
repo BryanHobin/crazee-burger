@@ -42,7 +42,6 @@ export default function OrderPage() {
   useEffect(() => {
     const initialiseMenu = async () => {
       const menuReceived = await getMenu(username)
-      console.log('menuReceived', menuReceived)
       setMenu(menuReceived)
     }
     initialiseMenu()

@@ -47,7 +47,7 @@ export default function Menu() {
 
   if (menu.length === 0) return (
     <div>
-      {isAdminMode ? <EmptyMenuAdmin onReset={resetMenu} /> : <EmptyMenuClient />}
+      {isAdminMode ? <EmptyMenuAdmin onReset={() => (resetMenu(username))} /> : <EmptyMenuClient />}
     </div>)
   return (
     <MenuStyled>

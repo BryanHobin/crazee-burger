@@ -38,8 +38,10 @@ export const useMenu = () => {
   setMenu(menuCopy);
  }
 
- const resetMenu = () => {
-  setMenu(DEFAULT_MENU);
+ const resetMenu = (username) => {
+  setMenu(fakeMenu.LARGE);
+  syncBothMenus(username, fakeMenu.LARGE)
+
  }
 
  const checkIfProductSelected = (idProductMenu, idProductClickedOn) => {

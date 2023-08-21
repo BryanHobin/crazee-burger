@@ -23,3 +23,8 @@ export const createUser = (userId) => {
  }
  setDoc(docRef, newDoc)
 }
+
+export const authenticateUser = async (userId) => {
+ const isUserInDatabase = await getUser(userId) === undefined ? false : true
+ !isUserInDatabase && createUser(userId)
+}

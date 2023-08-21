@@ -6,14 +6,14 @@ import EditInfoMessage from './EditInfoMessage';
 import Form from '../../../../../reusable-ui/Form';
 
 export default function EditForm() {
-  const { productSelected, setProductSelected, handleEdit, titleEditRef } = useContext(OrderContext)
+  const { productSelected, setProductSelected, handleEdit, username, titleEditRef } = useContext(OrderContext)
   const inputTexts = getInputTextsConfig(productSelected);
 
   const handleChange = (event) => {
     const productEdited = { ...productSelected, [event.target.name]: event.target.value }
 
     setProductSelected(productEdited)
-    handleEdit(productEdited)
+    handleEdit(productEdited, username)
   }
 
   return (

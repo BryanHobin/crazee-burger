@@ -8,6 +8,7 @@ import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
 import { findInArray } from "../../../utils/array";
+import { getUser } from "../../../../api/user";
 
 
 export default function OrderPage() {
@@ -57,6 +58,10 @@ export default function OrderPage() {
     handleProductSelected,
     checkIfProductSelected,
   }
+
+  //API
+
+  getUser("Bryan")
 
   //render
   return (

@@ -7,6 +7,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import TextInput from "../../reusable-ui/TextInput";
 import Button from "../../reusable-ui/Button";
 import { theme } from "../../../theme";
+import { createUser } from "../../../../api/user";
 
 export default function LoginForm() {
   //state
@@ -22,6 +23,8 @@ export default function LoginForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    createUser(username)
+
     setUsername("");
     navigate(`order/${username}`);
   };

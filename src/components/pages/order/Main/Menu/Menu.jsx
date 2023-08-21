@@ -7,6 +7,7 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../../enums/product";
 import { syncBothMenus } from "../../../../../../api/product";
+import Loader from "./Loader";
 
 
 export default function Menu() {
@@ -40,6 +41,9 @@ export default function Menu() {
     event.stopPropagation()
     handleAddToBasket(idProductToAdd)
   }
+
+
+  if (menu === undefined) return <Loader />
 
   if (menu.length === 0) return (
     <div>

@@ -3,11 +3,10 @@ import { deepClone, findIndex, removeFromArray } from "../utils/array"
 import { fakeMenu } from "../fakeData/fakeMenu"
 import { syncBothMenus } from "../../api/product"
 
-const DEFAULT_MENU = fakeMenu.LARGE
 
 export const useMenu = () => {
 
- const [menu, setMenu] = useState(DEFAULT_MENU)
+ const [menu, setMenu] = useState(undefined)
 
 
 

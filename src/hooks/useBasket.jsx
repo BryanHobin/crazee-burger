@@ -5,7 +5,7 @@ import { setLocalStorage } from "../utils/window"
 
 
 export const useBasket = () => {
- const [basket, setBasket] = useState(fakeBasket.EMPTY)
+ const [basket, setBasket] = useState([])
 
  const handleDeleteBasketCard = (idOfProductToDelete, username, forced = false,) => {
   const basketCopy = deepClone(basket)
@@ -30,7 +30,8 @@ export const useBasket = () => {
   }
   incrementProductAlreadyInBasket(idProductToAdd, basketCopy, setBasket, username)
  }
- return { basket, handleDeleteBasketCard, handleAddToBasket }
+
+ return { basket, setBasket, handleDeleteBasketCard, handleAddToBasket }
 }
 
 

@@ -7,12 +7,14 @@ import BasketProducts from "./BasketProducts";
 import BasketEmpty from "./BasketEmpty";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
+import Loader from "../Menu/Loader";
 
 export default function Basket() {
-  const { basket } = useContext(OrderContext)
+  const { basket, menu } = useContext(OrderContext)
 
   const isBasketEmpty = basket.length === 0
 
+  if (menu === undefined) return <Loader />
 
   return (
     <BasketStyled >

@@ -11,6 +11,7 @@ import { findInArray } from "../../../utils/array";
 import { getUser } from "../../../../api/user";
 import { NavLink, useParams } from "react-router-dom";
 import { getMenu } from "../../../../api/product";
+import { getLocalStorage } from "../../../utils/window";
 
 
 export default function OrderPage() {
@@ -23,7 +24,7 @@ export default function OrderPage() {
   const titleEditRef = useRef()
 
   const { menu, setMenu, handleAddProduct, handleDelete, handleEdit, resetMenu, checkIfProductSelected } = useMenu()
-  const { basket, handleDeleteBasketCard, handleAddToBasket } = useBasket()
+  const { basket, setBasket, handleDeleteBasketCard, handleAddToBasket } = useBasket()
   const { username } = useParams()
 
 
@@ -45,6 +46,15 @@ export default function OrderPage() {
       setMenu(menuReceived)
     }
     initialiseMenu()
+  }, [])
+
+  useEffect(() => {
+    const initialiseBasket = () => {
+      const basketReceived = getLocalStorage(username)
+      console.log('basketReceived', basketReceived)
+      if (basketReceived) setBasket(basketReceived)
+    }
+    initialiseBasket()
   }, [])
 
 

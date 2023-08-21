@@ -7,12 +7,13 @@ import { findInArray } from '../../../../../utils/array';
 
 export default function BasketProducts() {
  //state
+ const { username } = useContext(OrderContext)
 
  //comportements
  const { basket, menu, isAdminMode, handleDeleteBasketCard, handleProductSelected, productSelected, checkIfProductSelected } = useContext(OrderContext)
  const handleOnDeleteButton = (event, id) => {
   event.stopPropagation()
-  handleDeleteBasketCard(id)
+  handleDeleteBasketCard(id, username)
  }
 
 

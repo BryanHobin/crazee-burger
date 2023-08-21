@@ -6,10 +6,12 @@ import OrderContext from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../../enums/product";
+import { syncBothMenus } from "../../../../../../api/product";
 
 
 export default function Menu() {
   const {
+    username,
     menu,
     isAdminMode,
     handleDelete,
@@ -29,7 +31,7 @@ export default function Menu() {
   const handleCardDelete = (event, idOfProductToDelete) => {
     const forceRemove = true;
     event.stopPropagation(idOfProductToDelete)
-    handleDelete(idOfProductToDelete)
+    handleDelete(idOfProductToDelete, username)
     handleDeleteBasketCard(idOfProductToDelete, forceRemove)
     productSelected.id === idOfProductToDelete && setProductSelected(EMPTY_PRODUCT)
   }

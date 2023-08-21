@@ -20,13 +20,13 @@ export const useMenu = () => {
   syncBothMenus(username, menuUpdated)
  }
 
- const handleDelete = (idOfProductToDelete) => {
+ const handleDelete = (idOfProductToDelete, username) => {
   const menuCopy = deepClone(menu)
 
   const menuUpdated = removeFromArray(idOfProductToDelete, menuCopy)
 
   setMenu(menuUpdated);
-
+  syncBothMenus(username, menuUpdated)
 
  }
 

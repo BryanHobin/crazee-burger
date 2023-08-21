@@ -18,7 +18,8 @@ export default function AddForm() {
       id: crypto.randomUUID(),
       title: newProduct.title,
       imageSource: newProduct.imageSource,
-      price: newProduct.price
+      price: newProduct.price,
+      quantity: 0
     }
     handleAddProduct(productToAdd, username)
     setNewProduct(EMPTY_PRODUCT)

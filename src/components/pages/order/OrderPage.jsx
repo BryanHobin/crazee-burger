@@ -2,14 +2,15 @@ import { styled } from "styled-components";
 import Main from "./Main/Main";
 import { theme } from "../../../theme";
 import Navbar from "./Navbar/Navbar";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import OrderContext from "../../../context/OrderContext";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
 import { findInArray } from "../../../utils/array";
 import { getUser } from "../../../../api/user";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import { getMenu } from "../../../../api/product";
 
 
 export default function OrderPage() {
@@ -21,7 +22,7 @@ export default function OrderPage() {
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
   const titleEditRef = useRef()
 
-  const { menu, handleAddProduct, handleDelete, handleEdit, resetMenu, checkIfProductSelected } = useMenu()
+  const { menu, setMenu, handleAddProduct, handleDelete, handleEdit, resetMenu, checkIfProductSelected } = useMenu()
   const { basket, handleDeleteBasketCard, handleAddToBasket } = useBasket()
   const { username } = useParams()
 
@@ -35,6 +36,18 @@ export default function OrderPage() {
 
     titleEditRef.current.focus()
   }
+
+
+
+  useEffect(() => {
+    const initialiseMenu = async () => {
+      const menuReceived = await getMenu(username)
+      console.log('menuReceived', menuReceived)
+      setMenu(menuReceived)
+    }
+    initialiseMenu()
+  }, [])
+
 
 
   const orderContextValue = {

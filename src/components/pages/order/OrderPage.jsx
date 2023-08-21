@@ -9,6 +9,7 @@ import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
 import { findInArray } from "../../../utils/array";
 import { getUser } from "../../../../api/user";
+import { useParams } from "react-router-dom";
 
 
 export default function OrderPage() {
@@ -22,6 +23,7 @@ export default function OrderPage() {
 
   const { menu, handleAddProduct, handleDelete, handleEdit, resetMenu, checkIfProductSelected } = useMenu()
   const { basket, handleDeleteBasketCard, handleAddToBasket } = useBasket()
+  const { username } = useParams()
 
 
   //compo
@@ -36,6 +38,7 @@ export default function OrderPage() {
 
 
   const orderContextValue = {
+    username,
     isAdminMode,
     setIsAdminMode,
     isCollapsed,

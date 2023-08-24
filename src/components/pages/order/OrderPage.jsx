@@ -38,9 +38,6 @@ export default function OrderPage() {
   }
 
 
-  useEffect(() => {
-    initialiseSession(username, setBasket, setMenu)
-  }, [])
 
 
 
@@ -72,6 +69,10 @@ export default function OrderPage() {
   //API
 
   getUser("Bryan")
+
+  useEffect(() => {
+    initialiseSession(username, setBasket, setMenu)
+  }, [])
 
   //render
   return (

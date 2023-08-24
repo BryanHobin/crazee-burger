@@ -1,7 +1,7 @@
 import { getDoc, setDoc, doc } from "firebase/firestore"
 import { db } from "./firebase-config"
 
-export const syncBothMenus = (userId, menuUpdated) => {
+export const syncBothMenus = async (userId, menuUpdated) => {
  const docRef = doc(db, "users", userId)
 
  const dataMenu = {
@@ -9,7 +9,7 @@ export const syncBothMenus = (userId, menuUpdated) => {
   menu: menuUpdated
  }
 
- setDoc(docRef, dataMenu)
+ await setDoc(docRef, dataMenu)
 }
 
 export const getMenu = async (idUser) => {

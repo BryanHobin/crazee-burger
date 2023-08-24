@@ -9,7 +9,7 @@ import { useSucessMessage } from '../../../../../../hooks/useSuccessMessage';
 
 export default function AddForm() {
 
-  const { handleAddProduct, newProduct, setNewProduct } = useContext(OrderContext)
+  const { handleAddProduct, newProduct, setNewProduct, username } = useContext(OrderContext)
   const { isSubmitted, displaySucessMessage } = useSucessMessage()
 
   const handleSubmit = (event) => {
@@ -18,9 +18,10 @@ export default function AddForm() {
       id: crypto.randomUUID(),
       title: newProduct.title,
       imageSource: newProduct.imageSource,
-      price: newProduct.price
+      price: newProduct.price,
+      quantity: 0
     }
-    handleAddProduct(productToAdd)
+    handleAddProduct(productToAdd, username)
     setNewProduct(EMPTY_PRODUCT)
     displaySucessMessage()
 

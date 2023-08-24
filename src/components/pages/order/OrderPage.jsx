@@ -2,25 +2,29 @@ import { styled } from "styled-components";
 import Main from "./Main/Main";
 import { theme } from "../../../theme";
 import Navbar from "./Navbar/Navbar";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import OrderContext from "../../../context/OrderContext";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
 import { findInArray } from "../../../utils/array";
+import { getUser } from "../../../../api/user";
+import { useParams } from "react-router-dom";
+import { initialiseSession } from "./helpers/initialiseSession";
 
 
 export default function OrderPage() {
   //state
-  const [isAdminMode, setIsAdminMode] = useState(true)
-  const [isCollapsed, setIsCollapsed] = useState(true)
+  const [isAdminMode, setIsAdminMode] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(false)
   const [currentTab, setCurrentTab] = useState("add");
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
   const titleEditRef = useRef()
 
-  const { menu, handleAddProduct, handleDelete, handleEdit, resetMenu, checkIfProductSelected } = useMenu()
-  const { basket, handleDeleteBasketCard, handleAddToBasket } = useBasket()
+  const { menu, setMenu, handleAddProduct, handleDelete, handleEdit, resetMenu, checkIfProductSelected } = useMenu()
+  const { basket, setBasket, handleDeleteBasketCard, handleAddToBasket } = useBasket()
+  const { username } = useParams()
 
 
   //compo
@@ -34,7 +38,11 @@ export default function OrderPage() {
   }
 
 
+
+
+
   const orderContextValue = {
+    username,
     isAdminMode,
     setIsAdminMode,
     isCollapsed,
@@ -57,6 +65,14 @@ export default function OrderPage() {
     handleProductSelected,
     checkIfProductSelected,
   }
+
+  //API
+
+  getUser("Bryan")
+
+  useEffect(() => {
+    initialiseSession(username, setBasket, setMenu)
+  }, [])
 
   //render
   return (

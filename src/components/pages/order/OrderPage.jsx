@@ -37,24 +37,25 @@ export default function OrderPage() {
 
     titleEditRef.current.focus()
   }
+  const initialiseBasket = () => {
+    const basketReceived = getLocalStorage(username)
+    if (basketReceived) setBasket(basketReceived)
+  }
+  const initialiseMenu = async () => {
+    const menuReceived = await getMenu(username)
+    setMenu(menuReceived)
+  }
 
-
+  const initialiseSession = async () => {
+    await initialiseMenu()
+    initialiseBasket()
+  }
 
   useEffect(() => {
-    const initialiseMenu = async () => {
-      const menuReceived = await getMenu(username)
-      setMenu(menuReceived)
-    }
-    initialiseMenu()
+    initialiseSession()
   }, [])
 
   useEffect(() => {
-    const initialiseBasket = () => {
-      const basketReceived = getLocalStorage(username)
-      console.log('basketReceived', basketReceived)
-      if (basketReceived) setBasket(basketReceived)
-    }
-    initialiseBasket()
   }, [])
 
 

@@ -4,6 +4,7 @@ import Header from "../../../../reusable-ui/Header";
 import { calculateTotalToPay, formatPrice } from "../../../../../utils/maths";
 import OrderContext from "../../../../../context/OrderContext";
 import { useContext } from "react";
+import CasinoEffect from "../../../../reusable-ui/CasinoEffect";
 
 export default function Total() {
   const { basket, menu } = useContext(OrderContext)
@@ -13,8 +14,8 @@ export default function Total() {
   return (
     <Header className={"head"}>
       <TotalStyled>
-        <span className="total">Total</span>
-        <span>{formatPrice(totalToPay)}</span>
+        <span>Total</span>
+        <CasinoEffect count={formatPrice(totalToPay)} />
       </TotalStyled>
     </Header>
 

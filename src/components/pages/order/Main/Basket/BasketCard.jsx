@@ -3,14 +3,14 @@ import { formatPrice } from '../../../../../utils/maths';
 import { theme } from '../../../../../theme';
 import { MdDeleteForever } from "react-icons/md"
 
-export default function BasketCard({ title, imageSource, price, quantity, isClickable, onDelete, onClick, isSelected }) {
+export default function BasketCard({ className, title, imageSource, price, quantity, isClickable, onDelete, onClick, isSelected }) {
   //state
 
   //comportements
 
 
   //affichage
-  return <BasketCardStyled $isClickable={isClickable} onClick={onClick} $isSelected={isSelected}>
+  return <BasketCardStyled $isClickable={isClickable} onClick={onClick} $isSelected={isSelected} className={className}>
     <div className={"delete-button"} onClick={onDelete} >
       <MdDeleteForever className="icon" />
     </div>

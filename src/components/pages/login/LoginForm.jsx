@@ -7,7 +7,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import TextInput from "../../reusable-ui/TextInput";
 import Button from "../../reusable-ui/Button";
 import { theme } from "../../../theme";
-import { authenticateUser, createUser, getUser } from "../../../../api/user";
+import { authenticateUser } from "../../../../api/user";
 import Welcome from "./Welcome";
 
 export default function LoginForm() {

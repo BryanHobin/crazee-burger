@@ -57,7 +57,6 @@ height: 85vh;
  opacity: 1;
  transition: all ease-in-out .5s;
 }
-.basket-cards-enter-done{}
 
 .basket-cards-exit{
  transform: translateX(0%);

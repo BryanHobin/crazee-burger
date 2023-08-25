@@ -4,8 +4,8 @@ import BasketBody from "./BasketBody/BasketBody.jsx";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import Loader from "../Menu/Loader";
-import Total from "./Total";
-import Footer from "./Footer";
+import BasketHeader from "./BasketHeader/BasketHeader";
+import BasketFooter from "./BasketFooter";
 
 export default function Basket() {
 
@@ -15,9 +15,9 @@ export default function Basket() {
 
   return (
     <BasketStyled >
-      <Total />
+      <BasketHeader />
       <BasketBody />
-      <Footer />
+      <BasketFooter />
     </BasketStyled>
   )
 }

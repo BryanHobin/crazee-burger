@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 import BasketCard from './BasketCard';
 import { useContext } from 'react';
-import OrderContext from '../../../../../context/OrderContext';
-import { DEFAULT_IMAGE } from '../../../../../enums/product';
-import { findInArray } from '../../../../../utils/array';
+import OrderContext from '../../../../../../context/OrderContext';
+import { DEFAULT_IMAGE } from '../../../../../../enums/product';
+import { findInArray } from '../../../../../../utils/array';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 export default function BasketProducts() {

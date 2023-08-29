@@ -22,7 +22,8 @@ justify-content: center;
 align-items: center;
 flex-direction: column;
 width: 100%;
-height: calc(100% - 250px);
+height: 100%;
+
 h1, h2{
  font-family: "Amatic SC",cursive;
  color:${theme.colors.greyBlue};

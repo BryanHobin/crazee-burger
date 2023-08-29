@@ -1,16 +1,17 @@
 import { css, styled } from 'styled-components';
-import { formatPrice } from '../../../../../utils/maths';
-import { theme } from '../../../../../theme';
+import { formatPrice } from '../../../../../../utils/maths';
+import { theme } from '../../../../../../theme';
 import { MdDeleteForever } from "react-icons/md"
+import CasinoEffect from '../../../../../reusable-ui/CasinoEffect';
 
-export default function BasketCard({ title, imageSource, price, quantity, isClickable, onDelete, onClick, isSelected }) {
+export default function BasketCard({ className, title, imageSource, price, quantity, isClickable, onDelete, onClick, isSelected }) {
   //state
 
   //comportements
 
 
   //affichage
-  return <BasketCardStyled $isClickable={isClickable} onClick={onClick} $isSelected={isSelected}>
+  return <BasketCardStyled $isClickable={isClickable} onClick={onClick} $isSelected={isSelected} className={className}>
     <div className={"delete-button"} onClick={onDelete} >
       <MdDeleteForever className="icon" />
     </div>
@@ -19,7 +20,9 @@ export default function BasketCard({ title, imageSource, price, quantity, isClic
       <div className="title">{title ? title : "-"}</div>
       <div className="price">{formatPrice(price)}</div>
     </div>
-    <div className="quantity">x {quantity}</div>
+    <div className="quantity">
+      <CasinoEffect count={`x ${quantity}`} />
+    </div>
   </BasketCardStyled>
 }
 
@@ -110,7 +113,7 @@ position: relative;
   .quantity{
   grid-area: 1 / 3 / 3 / 4;
   color:${theme.colors.primary};
-  text-align: center;
+  text-align: right;
   }
 ${({ $isSelected, $isClickable }) => $isSelected && $isClickable ? selectedStyle : null}
 `

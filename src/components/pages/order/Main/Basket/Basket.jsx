@@ -1,26 +1,23 @@
 import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
-import Total from "./Total";
-import { calculateTotalToPay, formatPrice } from "../../../../../utils/maths";
-import Footer from "./Footer";
-import BasketProducts from "./BasketProducts";
-import BasketEmpty from "./BasketEmpty";
+import BasketBody from "./BasketBody/BasketBody.jsx";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import Loader from "../Menu/Loader";
+import BasketHeader from "./BasketHeader/BasketHeader";
+import BasketFooter from "./BasketFooter";
 
 export default function Basket() {
-  const { basket, menu } = useContext(OrderContext)
 
-  const isBasketEmpty = basket.length === 0
+  const { basket, menu } = useContext(OrderContext)
 
   if (menu === undefined) return <Loader />
 
   return (
     <BasketStyled >
-      <Total />
-      {isBasketEmpty ? <BasketEmpty /> : <BasketProducts />}
-      <Footer />
+      <BasketHeader />
+      <BasketBody />
+      <BasketFooter />
     </BasketStyled>
   )
 }

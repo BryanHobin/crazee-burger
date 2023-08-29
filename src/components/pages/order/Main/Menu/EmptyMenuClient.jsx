@@ -4,17 +4,17 @@ import { theme } from '../../../../../theme';
 export default function EmptyMenuClient() {
 
 
- return (
-  <EmptyMenuClientStyled>
-   <h1>Victime de notre succès ! :D</h1>
-   <h2>
-    De nouvelles recettes sont en cours de préparation.
-   </h2>
-   <h2>
-    À très vite !
-   </h2>
-  </EmptyMenuClientStyled>
- )
+  return (
+    <EmptyMenuClientStyled>
+      <h1>Victime de notre succès ! :D</h1>
+      <h2>
+        De nouvelles recettes sont en cours de préparation.
+      </h2>
+      <h2>
+        À très vite !
+      </h2>
+    </EmptyMenuClientStyled>
+  )
 }
 
 const EmptyMenuClientStyled = styled.div`
@@ -23,7 +23,7 @@ justify-content: center;
 align-items: center;
 flex-direction: column;
 width: 100%;
-height: calc(100% - 250px);
+height: 100%;
 text-align: center;
 h1, h2{
  font-family: "Amatic SC",cursive;
